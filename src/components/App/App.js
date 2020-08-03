@@ -17,7 +17,8 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
-import WelcomePage from '../WelcomePage/WelcomePage'
+import WelcomePage from '../WelcomePage/WelcomePage';
+import MemberSearch from '../MemberSearch/MemberSearch';
 
 import './App.css';
 
@@ -53,6 +54,12 @@ class App extends Component {
                 exact
                 path="/home"
                 component={WelcomePage}
+              />
+
+              <MemberSearch
+                exact
+                path="/search"
+                component={MemberSearch}
               />
               
               {/* This works the same as the other protected route, except that if the user is logged in,

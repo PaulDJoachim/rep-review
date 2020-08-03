@@ -10,6 +10,7 @@ class WelcomePage extends Component {
         <h2>Welcome To Rep-Review!</h2>
        <p>Here you can find information about all 535 members of congress as well as congressional committees, current bills, and voting records.</p>
        <p>Use the sidebar to browse categories, or log in to get information about your state.</p>
+      {JSON.stringify(this.props)}
       </div>
     );
   }
