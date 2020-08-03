@@ -58,7 +58,7 @@ class App extends Component {
 
               <MemberSearch
                 exact
-                path="/search"
+                path="/Members"
                 component={MemberSearch}
               />
               

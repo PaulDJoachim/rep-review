@@ -14,6 +14,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import {withRouter} from 'react-router-dom';
+import logo from './logo.png'
 
 const drawerWidth = 240;
 
@@ -46,6 +47,12 @@ const styles = theme => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+    
+  },
+  logo: {
+    height: 200,
+    width: 180,
+    marginLeft: 25,
   },
 });
 
@@ -58,9 +65,13 @@ class ResponsiveDrawer extends React.Component {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
 
-  handleLink = () => {
-    console.log('hello!')
-    this.props.history.push('/search')
+  handleLink = (event) => {
+    console.log(event.target.textContent)
+    this.props.history.push(event.target.textContent)
+  }
+
+  handleHome = () => {
+    this.props.history.push('/home')
   }
 
   render() {
@@ -68,7 +79,7 @@ class ResponsiveDrawer extends React.Component {
 
     const drawer = (
       <div>
-        <div className={classes.toolbar} />
+        {/* <div className={classes.toolbar} /> */}
         <Divider />
         <List>
           {['News', 'Members', 'Bills', 'Votes', 'Committees', 'Bookmarks'].map((text, index) => (
@@ -95,7 +106,7 @@ class ResponsiveDrawer extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" noWrap>
-              Responsive drawer
+              Rep-Review
             </Typography>
           </Toolbar>
         </AppBar>
@@ -123,6 +134,7 @@ class ResponsiveDrawer extends React.Component {
               variant="permanent"
               open
             >
+              <img className={classes.logo} src={logo} alt="logo" onClick={this.handleHome}/>
               {drawer}
             </Drawer>
           </Hidden>
