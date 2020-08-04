@@ -22,6 +22,14 @@ import MemberSearch from '../MemberSearch/MemberSearch';
 
 import './App.css';
 
+const StateRepList = ({match}) => console.log('match',match) ||(
+
+    <div>
+      <h1>This state is {match.params.stateName}</h1>
+    </div>
+
+)
+
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
@@ -61,7 +69,7 @@ class App extends Component {
                 path="/Members"
                 component={MemberSearch}
               />
-              
+              <Route path={`/Members/:stateName`} component={StateRepList} />
               {/* This works the same as the other protected route, except that if the user is logged in,
               they will see the info page instead. */}
 

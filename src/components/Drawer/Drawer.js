@@ -67,7 +67,7 @@ class ResponsiveDrawer extends React.Component {
 
   handleLink = (event) => {
     console.log(event.target.textContent)
-    this.props.history.push(event.target.textContent)
+    this.props.history.push('/'+event.target.textContent)
   }
 
   handleHome = () => {
