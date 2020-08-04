@@ -8,32 +8,37 @@ import {
 
 import {connect} from 'react-redux';
 
-import Nav from '../Nav/Nav';
+// import Nav from '../Nav/Nav';
 import Drawer from '../Drawer/Drawer';
 import Footer from '../Footer/Footer';
 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
+// import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
-import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+// import AboutPage from '../AboutPage/AboutPage';
+// import UserPage from '../UserPage/UserPage';
+// import InfoPage from '../InfoPage/InfoPage';
 import WelcomePage from '../WelcomePage/WelcomePage';
 import MemberSearch from '../MemberSearch/MemberSearch';
+import StatePage from '../StatePage/StatePage';
 
 import './App.css';
 
-const StateRepList = ({match}) => console.log('match',match) ||(
+// const StateRepList = ({match}) => console.log('match',match) ||(
 
-    <div>
-      <h1>This state is {match.params.stateName}</h1>
-    </div>
+//     <div>
+//       <h1>This state is {match.params.stateName}</h1>
+//       {/* {this.props.dispatch({type:'GET_STATE_REPS' })} */}
+//     </div>
 
-)
+// )
 
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
+    this.props.dispatch({type: 'GET_HOUSE'})
   }
+
+
 
   render() {
     return (
@@ -48,11 +53,13 @@ class App extends Component {
               <Redirect exact from="/" to="/home" />
               {/* Visiting localhost:3000/about will show the about page.
               This is a route anyone can see, no login necessary */}
-              <Route
+
+              {/* <Route
                 exact
                 path="/about"
                 component={AboutPage}
-              />
+              /> */}
+
               {/* For protected routes, the view could show one of several things on the same route.
               Visiting localhost:3000/home will show the UserPage if the user is logged in.
               If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
@@ -69,7 +76,7 @@ class App extends Component {
                 path="/Members"
                 component={MemberSearch}
               />
-              <Route path={`/Members/:stateName`} component={StateRepList} />
+              <Route path={`/Members/:stateName`} component={StatePage} />
               {/* This works the same as the other protected route, except that if the user is logged in,
               they will see the info page instead. */}
 
