@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {Link, Route, withRouter} from 'react-router-dom';
 
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
 
 
 
@@ -20,12 +24,15 @@ class MemberSearch extends Component {
       <div>
         <p>{JSON.stringify(this.props)}</p>
         <h2>This is the Member Search Page!</h2>
-        <ul>
+        <List>
         {states.map((state, id)=>(
-          <li key={id} onClick={this.handleSelectState}>{state}
-          </li>
+          <ListItem button key={id} onClick={this.handleSelectState}>
+            <ListItemText>
+              {state}
+            </ListItemText>
+          </ListItem>
         ))}
-        </ul>
+        </List>
       </div>
     );
   }

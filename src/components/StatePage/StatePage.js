@@ -3,13 +3,33 @@ import {connect} from 'react-redux';
 import { sortBy } from 'lodash';
 import background from './generic-avatar.png';
 
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
+const listStyle = {
+  height: '100px',
+  width: '82px',
+  borderRadius: '10px',
+}
+
+const placeholder = {
+  height: '100px',
+  width: '82px',
+  backgroundImage: `url(${background})`,
+  backgroundPosition: 'center',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  borderRadius: '10px',
+}
+
+
+
+
+
 class StatePage extends Component {
-
-// const StatePage = (match) => {
-//   return(
-//   <h1>HELLO {match.match.params.stateName}</h1>
-
   render() {
+
     // thisStateHouse/Senate are filtered arrays with only the congress members form this state
     const thisStateHouse = this.props.house.filter(person => person.state === this.props.match.params.stateName);
     const thisStateSenate = this.props.senate.filter(person => person.state === this.props.match.params.stateName);
@@ -17,45 +37,35 @@ class StatePage extends Component {
       return Math.sin(n);
     });
 
-    const listStyle = {
-      height: '100px',
-      width: '82px'
-    }
-    // const background = require(`./generic-avatar.png`);
-    const placeholder = {
-      height: '100px',
-      width: '82px',
-      backgroundImage: `url(${background})`,
-      backgroundPosition: 'center',
-      backgroundSize: 'cover',
-      backgroundRepeat: 'no-repeat'
-    }
-
     return(
       <>
         <h1>{stateAbbrToName[this.props.match.params.stateName]}</h1>
         <h2>Senate Members</h2>
-        <ul>
+        <List>
           {thisStateSenate.map((person, index) => (
-            <li key={index}>
+            <ListItem button key={index}>
               <div style={placeholder}>
                 <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
               </div>
-              {person.first_name} {person.last_name}
-            </li>
+              <ListItemText>
+                {person.first_name} {person.last_name}
+              </ListItemText>
+            </ListItem>
           ))}
-        </ul>
+        </List>
         <h2>House Members</h2>
-        <ul>
+        <List>
           {newArr.map((person, index) => (
-            <li key={index}>
+            <ListItem button key={index}>
               <div style={placeholder}>
                 <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
               </div>
-              District: {person.district}, {person.first_name} {person.last_name} - {person.party}
-            </li>
+              <ListItemText>
+                District: {person.district}, {person.first_name} {person.last_name} - {person.party}
+              </ListItemText>
+            </ListItem>
           ))}
-        </ul>
+        </List>
       </>
     )
   } 
@@ -71,6 +81,7 @@ const mapStateToProps = state => ({
 
 
 export default connect(mapStateToProps)(StatePage);
+
 
 const stateAbbrToName = {
   "AL": "Alabama",
