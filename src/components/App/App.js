@@ -36,6 +36,7 @@ class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
     this.props.dispatch({type: 'GET_HOUSE'})
+    this.props.dispatch({type: 'GET_SENATE'})
   }
 
 

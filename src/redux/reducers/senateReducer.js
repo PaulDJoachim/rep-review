@@ -1,4 +1,4 @@
-const senateReducer = (state = {}, action) => {
+const senateReducer = (state = [{test: 'object'}], action) => {
   switch (action.type) {
     case 'SET_SENATE':
       return action.payload;
