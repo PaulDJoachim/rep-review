@@ -17,6 +17,7 @@ import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles';
 import {withRouter} from 'react-router-dom';
 import logo from './logo.png'
+import Modal from '../Modal/Modal'
 
 const drawerWidth = 240;
 
@@ -113,7 +114,8 @@ class ResponsiveDrawer extends React.Component {
               <Typography variant="h6" color="inherit" noWrap>
                 Rep-Review
               </Typography>
-              <Button variant="contained" color="default" className={classes.login}>Log In</Button>
+              <Modal />
+              {/* <Button variant="contained" color="default" className={classes.login}>Log In</Button> */}
             </Grid>
           </Toolbar>
         </AppBar>
