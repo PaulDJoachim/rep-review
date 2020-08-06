@@ -7,6 +7,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
+
+
 const listStyle = {
   height: '100px',
   width: '82px',
@@ -25,11 +27,15 @@ const placeholder = {
 
 
 
-
-
 class StatePage extends Component {
-  render() {
 
+  handleMemberClick = (id, firstName, lastName) => {
+    this.props.history.push('/Members/' + id)
+    this.props.dispatch({type: 'SET_ACTIVE_MEMBER', payload: firstName+'_'+lastName })
+  }
+
+  render() {
+    
     // thisStateHouse/Senate are filtered arrays with only the congress members form this state
     const thisStateHouse = this.props.house.filter(person => person.state === this.props.match.params.stateName);
     const thisStateSenate = this.props.senate.filter(person => person.state === this.props.match.params.stateName);
@@ -43,7 +49,7 @@ class StatePage extends Component {
         <h2>Senate Members</h2>
         <List>
           {thisStateSenate.map((person, index) => (
-            <ListItem button key={index}>
+            <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id, person.first_name, person.last_name)}>
               <div style={placeholder}>
                 <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
               </div>
@@ -56,7 +62,7 @@ class StatePage extends Component {
         <h2>House Members</h2>
         <List>
           {newArr.map((person, index) => (
-            <ListItem button key={index}>
+            <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id, person.first_name, person.last_name)}>
               <div style={placeholder}>
                 <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
               </div>

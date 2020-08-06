@@ -20,6 +20,7 @@ import Footer from '../Footer/Footer';
 import WelcomePage from '../WelcomePage/WelcomePage';
 import MemberSearch from '../MemberSearch/MemberSearch';
 import StatePage from '../StatePage/StatePage';
+import MemberPage from '../MemberPage/MemberPage';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 import './App.css';
@@ -76,10 +77,11 @@ class App extends Component {
 
                 <MemberSearch
                   exact
-                  path="/Members"
+                  path="/Search"
                   component={MemberSearch}
                 />
-                <Route path={`/Members/:stateName`} component={StatePage} />
+                <Route path={`/Search/:stateName`} component={StatePage} />
+                <Route path={`/Members/:memberId`} component={MemberPage} />
                 {/* This works the same as the other protected route, except that if the user is logged in,
                 they will see the info page instead. */}
 

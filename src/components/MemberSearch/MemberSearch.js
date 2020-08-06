@@ -15,7 +15,7 @@ class MemberSearch extends Component {
     const stateName = event.target.innerText
     const abbr = stateAbbr[stateName]
     // console.log(event.target.innerText)
-    this.props.history.push('/Members/'+ abbr)
+    this.props.history.push('/Search/'+ abbr)
   }
 
   render() {

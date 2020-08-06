@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     }}
     )
     .then( (response) => {
-        console.log( 'Successfully got search results');
+        console.log( 'Successfully got house data');
         res.send(response.data);
     })
     .catch( (err) => {

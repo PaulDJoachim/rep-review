@@ -12,6 +12,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles';
 import {withRouter} from 'react-router-dom';
 import logo from './logo.png'
@@ -54,6 +56,8 @@ const styles = theme => ({
     width: 180,
     marginLeft: 25,
   },
+  login: {
+  }
 });
 
 class ResponsiveDrawer extends React.Component {
@@ -82,7 +86,7 @@ class ResponsiveDrawer extends React.Component {
         {/* <div className={classes.toolbar} /> */}
         <Divider />
         <List>
-          {['News', 'Members', 'Bills', 'Votes', 'Committees', 'Bookmarks'].map((text, index) => (
+          {['News', 'Search', 'Bills', 'Votes', 'Committees', 'Bookmarks'].map((text, index) => (
             <ListItem button key={text} onClick={this.handleLink}>
                 <ListItemText primary={text}/>
             </ListItem>
@@ -105,9 +109,12 @@ class ResponsiveDrawer extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit" noWrap>
-              Rep-Review
-            </Typography>
+            <Grid container justify="space-between">
+              <Typography variant="h6" color="inherit" noWrap>
+                Rep-Review
+              </Typography>
+              <Button variant="contained" color="default" className={classes.login}>Log In</Button>
+            </Grid>
           </Toolbar>
         </AppBar>
         <nav className={classes.drawer}>
