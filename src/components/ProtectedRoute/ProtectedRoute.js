@@ -39,7 +39,7 @@ const ProtectedRoute = (props) => {
   } else {
     // the the user is not logged in and the mode is not 'login'
     // show the RegisterPage
-    ComponentToShow = WelcomePage;
+    ComponentToShow = RegisterPage;
   }
 
   // We return a Route component that gets added to our list of routes

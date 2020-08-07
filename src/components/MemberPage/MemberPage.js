@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import background from '../StatePage/generic-avatar.png';
-
+import BookmarkButton from '../BookmarkButton/BookmarkButton'
 
 const listStyle = {
   height: '275px',
@@ -49,6 +49,7 @@ componentDidUpdate(prevProps) {
         <h2>Phone: {member.roles[0].phone}</h2>
         <h2>Office: {member.roles[0].office}</h2>
         {/* {JSON.stringify(this.props.member)} */}
+        <BookmarkButton />
       </>
     )
   } 

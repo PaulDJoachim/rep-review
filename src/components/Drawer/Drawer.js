@@ -18,6 +18,7 @@ import { withStyles } from '@material-ui/core/styles';
 import {withRouter} from 'react-router-dom';
 import logo from './logo.png'
 import Modal from '../Modal/Modal'
+import { connect } from 'react-redux';
 
 const drawerWidth = 240;
 
@@ -114,8 +115,14 @@ class ResponsiveDrawer extends React.Component {
               <Typography variant="h6" color="inherit" noWrap>
                 Rep-Review
               </Typography>
-              <Modal />
-              {/* <Button variant="contained" color="default" className={classes.login}>Log In</Button> */}
+              {/* If the user is logged in, show a greeting and the log out button
+                Otherwise show the log in button. */}
+              {this.props.user.id ? 
+                <Grid item>
+                <p>Hello {this.props.user.username}</p>
+                <p><Button onClick={() => this.props.dispatch({ type: 'LOGOUT' })} variant="contained" color="default">Log Out</Button> </p>
+                </ Grid>
+                :<Modal />}
             </Grid>
           </Toolbar>
         </AppBar>
@@ -166,5 +173,9 @@ ResponsiveDrawer.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
 
-export default withRouter(withStyles(styles, { withTheme: true })(ResponsiveDrawer));
+
+export default connect(mapStateToProps)(withRouter(withStyles(styles, { withTheme: true })(ResponsiveDrawer)));

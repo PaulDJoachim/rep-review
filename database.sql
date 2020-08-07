@@ -8,3 +8,15 @@ CREATE TABLE "user" (
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL
 );
+
+CREATE TABLE "bookmarks" (
+	"id" SERIAL PRIMARY KEY,
+	"url" VARCHAR (1000) NOT NULL
+);
+
+CREATE TABLE user_bookmarks (
+	id SERIAL PRIMARY KEY,
+	user_id INT REFERENCES "user",
+	bookmark_id INT REFERENCES bookmarks
+);
+
