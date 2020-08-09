@@ -50,7 +50,7 @@ router.post('/', async (req, res) => {
 
 
 router.get('/:id', (req, res) => {
-  console.log(req.params.id)
+  console.log('this is bookmark GET, user id =',req.params.id)
   const userId = req.params.id;
   const queryText = `
   SELECT bookmarks.url FROM bookmarks

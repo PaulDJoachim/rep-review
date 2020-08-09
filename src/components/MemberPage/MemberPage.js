@@ -22,15 +22,19 @@ const placeholder = {
 class MemberPage extends Component {
 
   componentDidMount() {
+    this.props.dispatch({type:'CLEAR_MEMBER'});
     this.props.dispatch({type:'GET_MEMBER', payload: this.props.match.params.memberId});
     console.log(this.props.activeMember)
+    this.props.dispatch({type:'CLEAR_BIO'});
     this.props.dispatch({type:'GET_BIO', payload: this.props.activeMember});
     console.log('these are the props on the member page:', this.props);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.url !== this.props.match.url) {
+      this.props.dispatch({type:'CLEAR_MEMBER'});
       this.props.dispatch({type:'GET_MEMBER', payload: this.props.match.params.memberId});
+      this.props.dispatch({type:'CLEAR_BIO'});
       this.props.dispatch({type:'GET_BIO', payload: this.props.activeMember});
     }
   }
@@ -60,7 +64,8 @@ const mapStateToProps = state => ({
   errors: state.errors,
   member: state.member,
   activeMember: state.activeMember,
-  bio: state.bio
+  bio: state.bio,
+  user: state.user,
 });
 
 

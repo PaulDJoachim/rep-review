@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import StarIcon from '@material-ui/icons/Star';
@@ -24,8 +22,31 @@ const styles = theme => ({
 
 class ToggleButtons extends React.Component {
   state = {
-    bookmarked: false,
   };
+
+ componentDidMount() {
+    // this.props.dispatch({type:'GET_BOOKMARKS', payload: this.props.user.id})
+    // check if the user has this page bookmarked and toggle the bookmark state if so.
+    // await this.props.dispatch({type:'GET_BOOKMARKS', payload: this.state.userId})
+    // console.log('these are the bookmarks on componenetDidMount',this.props.bookmarks, this.props.location.pathname)
+    this.props.bookmarks.map((mark)=>{
+      if (mark.url === this.props.location.pathname){
+        console.log('found match')
+        this.setState({bookmarked: true});
+      } 
+    })
+  }
+  
+
+  // componenetDidUpdate(prevProps) {
+  //   if (prevProps == this.props) {
+  //     console.log('DIFFERENT!')
+  //     this.setState({
+  //       userId: this.props.user.id,
+  //       bookmarks: this.props.bookmarks
+  //     });
+  //   }
+  // }
 
   handleBookmark = (event, bookmarked) => {
     this.setState({ bookmarked })
@@ -33,6 +54,7 @@ class ToggleButtons extends React.Component {
   };
 
   render() {
+    if (this.props.bookmarks[0].test === 'object') return null;
     const { classes } = this.props;
     const { bookmarked } = this.state;
 
@@ -40,13 +62,18 @@ class ToggleButtons extends React.Component {
         <>
           <div className={classes.toggleContainer}>
             <ToggleButtonGroup value={bookmarked} exclusive onChange={this.handleBookmark}>
-              <ToggleButton value='true'>
-                {this.state.bookmarked ? <StarIcon /> : <StarBorderIcon />}
-                
+              {this.state.bookmarked ? 
+              <ToggleButton selected={true} value={false}>
+                <StarIcon />
               </ToggleButton>
+              :
+              <ToggleButton selected={false} value={true}>
+                <StarBorderIcon />
+              </ToggleButton>}
             </ToggleButtonGroup>
           </div>
-          {JSON.stringify(this.props.location.pathname)}
+          {JSON.stringify(this.props.bookmarks)}
+          {JSON.stringify(this.state)}
           {/* <Typography variant="caption" gutterBottom>
             Bookmark Button
           </Typography> */}
@@ -61,6 +88,7 @@ ToggleButtons.propTypes = {
 
 const mapStateToProps = (state) => ({
   user: state.user,
+  bookmarks: state.bookmarks,
 });
 
 export default connect(mapStateToProps)(withRouter(withStyles(styles)(ToggleButtons)));
