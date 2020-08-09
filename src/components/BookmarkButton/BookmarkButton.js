@@ -29,7 +29,7 @@ class ToggleButtons extends React.Component {
 
   handleBookmark = (event, bookmarked) => {
     this.setState({ bookmarked })
-    this.props.dispatch({type:'ADD_BOOKMARK', payload: this.props.location.pathname})
+    this.props.dispatch({type:'ADD_BOOKMARK', payload: [this.props.location.pathname, this.props.user.id]})
   };
 
   render() {

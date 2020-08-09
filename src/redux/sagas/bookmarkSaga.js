@@ -24,7 +24,7 @@ function* addBookmark(action){
 
 function* bookmarkSaga() {
   yield takeLatest('ADD_BOOKMARK', addBookmark);
-  yield takeLatest('REMOVE_BOOKMARK', removeBookmark);
+  // yield takeLatest('REMOVE_BOOKMARK', removeBookmark);
 }
 
 export default bookmarkSaga;
