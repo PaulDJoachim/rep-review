@@ -11,6 +11,19 @@ function* addBookmark(action){
   }
 }
 
+
+function* getBookmarks(action){
+  //us try/catch for errors - replaces promise .then & .catch
+  try {
+    const response = yield axios.get('/api/bookmark/' + action.payload);
+    yield put({ type: 'SET_BOOKMARKS', payload: response.data});
+    console.log('putting this in the bookmarks reducer:', response.data)
+  } catch (error) {
+      console.log('error with bookmark get request', error);
+  }
+}
+
+
 // function* removeBookmark(action){
 //   //us try/catch for errors - replaces promise .then & .catch
 //   try {
@@ -24,6 +37,7 @@ function* addBookmark(action){
 
 function* bookmarkSaga() {
   yield takeLatest('ADD_BOOKMARK', addBookmark);
+  yield takeLatest('GET_BOOKMARKS', getBookmarks);
   // yield takeLatest('REMOVE_BOOKMARK', removeBookmark);
 }
 

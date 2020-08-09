@@ -21,19 +21,19 @@ const placeholder = {
 
 class MemberPage extends Component {
 
-componentDidMount() {
-  this.props.dispatch({type:'GET_MEMBER', payload: this.props.match.params.memberId});
-  console.log(this.props.activeMember)
-  this.props.dispatch({type:'GET_BIO', payload: this.props.activeMember});
-  console.log('these are the props on the member page:', this.props);
-}
-
-componentDidUpdate(prevProps) {
-  if (prevProps.match.url !== this.props.match.url) {
+  componentDidMount() {
     this.props.dispatch({type:'GET_MEMBER', payload: this.props.match.params.memberId});
+    console.log(this.props.activeMember)
     this.props.dispatch({type:'GET_BIO', payload: this.props.activeMember});
+    console.log('these are the props on the member page:', this.props);
   }
-}
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.url !== this.props.match.url) {
+      this.props.dispatch({type:'GET_MEMBER', payload: this.props.match.params.memberId});
+      this.props.dispatch({type:'GET_BIO', payload: this.props.activeMember});
+    }
+  }
 
   render() {
     const member = this.props.member;

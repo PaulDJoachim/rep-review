@@ -24,6 +24,7 @@ import MemberPage from '../MemberPage/MemberPage';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 import './App.css';
+import Bookmarks from '../Bookmarks/Bookmarks';
 
 // const StateRepList = ({match}) => console.log('match',match) ||(
 
@@ -80,16 +81,15 @@ class App extends Component {
                   path="/Search"
                   component={MemberSearch}
                 />
+
+                <Bookmarks
+                  exact
+                  path="/Bookmarks"
+                  component={Bookmarks}
+                />
+
                 <Route path={`/Search/:stateName`} component={StatePage} />
                 <Route path={`/Members/:memberId`} component={MemberPage} />
-                {/* This works the same as the other protected route, except that if the user is logged in,
-                they will see the info page instead. */}
-
-                {/* <ProtectedRoute
-                  exact
-                  path="/info"
-                  component={InfoPage}
-                /> */}
 
                 {/* If none of the other routes matched, we will show a 404. */}
                 <Route render={() => <h1>404</h1>} />

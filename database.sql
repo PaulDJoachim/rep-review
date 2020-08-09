@@ -16,7 +16,7 @@ CREATE TABLE "bookmarks" (
 
 CREATE TABLE user_bookmarks (
 	id SERIAL PRIMARY KEY,
-	user_id INT REFERENCES "user",
+	user_id INT NOT NULL REFERENCES "user",
 	bookmark_id INT REFERENCES bookmarks
 );
 
