@@ -27,7 +27,7 @@ function* getBookmarks(action){
 function* removeBookmark(action){
   //us try/catch for errors - replaces promise .then & .catch
   try {
-    const response = yield axios.delete('/api/bookmark/', action.payload);
+    const response = yield axios.put('/api/bookmark/', action.payload);
     yield put({ type: 'GET_BOOKMARKS', payload: action.payload[1] });
   } catch (error) {
       console.log('error with bookmark delete saga', error);

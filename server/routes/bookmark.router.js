@@ -68,7 +68,7 @@ router.get('/:id', (req, res) => {
 })
 
 
-router.delete('/', (req,res)=> {
+router.put('/', (req,res)=> {
   console.log('delete req.body:', req.body)
   const bookmarkUrl = req.body[0]
   const userId = req.body[1]
