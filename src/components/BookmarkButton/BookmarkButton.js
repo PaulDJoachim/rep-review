@@ -48,26 +48,31 @@ class ToggleButtons extends React.Component {
   //   }
   // }
 
-  handleBookmark = (event, bookmarked) => {
-    this.setState({ bookmarked })
-    this.props.dispatch({type:'ADD_BOOKMARK', payload: [this.props.location.pathname, this.props.user.id]})
+  handleAddBookmark = (event, bookmarked) => {
+    this.setState({ bookmarked });
+    this.props.dispatch({type:'ADD_BOOKMARK', payload: [this.props.location.pathname, this.props.user.id]});
   };
 
+  handleRemoveBookmark = (event, bookmarked) => {
+    this.setState({bookmarked});
+    this.props.dispatch({type:'REMOVE_BOOKMARK', payload: [this.props.location.pathname, this.props.user.id]});
+  }
+
   render() {
-    if (this.props.bookmarks[0].test === 'object') return null;
+    if (this.props.bookmarks === [{test:'object'}]) return null;
     const { classes } = this.props;
     const { bookmarked } = this.state;
 
     return (
         <>
           <div className={classes.toggleContainer}>
-            <ToggleButtonGroup value={bookmarked} exclusive onChange={this.handleBookmark}>
+            <ToggleButtonGroup value={bookmarked} exclusive >
               {this.state.bookmarked ? 
-              <ToggleButton selected={true} value={false}>
+              <ToggleButton selected={true} value={false} onClick={this.handleRemoveBookmark}>
                 <StarIcon />
               </ToggleButton>
               :
-              <ToggleButton selected={false} value={true}>
+              <ToggleButton selected={false} value={true} onClick={this.handleAddBookmark}>
                 <StarBorderIcon />
               </ToggleButton>}
             </ToggleButtonGroup>

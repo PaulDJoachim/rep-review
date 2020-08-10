@@ -67,4 +67,30 @@ router.get('/:id', (req, res) => {
   })
 })
 
+
+router.delete('/', (req,res)=> {
+  console.log('delete req.body:', req.body)
+  const bookmarkUrl = req.body[0]
+  const userId = req.body[1]
+  const queryValues = [bookmarkUrl, userId]
+  const queryText = `
+  DELETE FROM user_bookmarks
+  WHERE bookmark_id = ANY(
+    SELECT "id" FROM bookmarks
+    WHERE url = $1
+    )
+  AND user_id = $2;
+  `
+  pool.query(queryText, queryValues)
+  .then( (response) =>{
+    console.log('bookmark deleted', req.body)
+    res.sendStatus(200);
+  })
+  .catch((err)=>{
+    console.log('Error on bookmark delete:', err);
+    res.sendStatus(500)
+  })
+})
+
+
 module.exports = router;

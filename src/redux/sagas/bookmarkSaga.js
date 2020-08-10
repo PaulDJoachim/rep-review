@@ -5,9 +5,9 @@ function* addBookmark(action){
   //us try/catch for errors - replaces promise .then & .catch
   try {
     yield axios.post('/api/bookmark/', action.payload);
-    yield put({ type: 'GET_BOOKMARKS' });
+    yield put({ type: 'GET_BOOKMARKS', payload: action.payload[1] });
   } catch (error) {
-      console.log('error with addBookmark saga:', error);
+      console.log('error with bookmark add saga:', error);
   }
 }
 
@@ -19,26 +19,25 @@ function* getBookmarks(action){
     yield put({ type: 'SET_BOOKMARKS', payload: response.data});
     console.log('putting this in the bookmarks reducer:', response.data)
   } catch (error) {
-      console.log('error with bookmark get request', error);
+      console.log('error with bookmark get saga', error);
   }
 }
 
 
-// function* removeBookmark(action){
-//   //us try/catch for errors - replaces promise .then & .catch
-//   try {
-//     const response = yield axios.get('/api/bio/' + action.payload);
-//     yield put({ type: 'SET_BIO', payload: response.data.query.pages[Object.keys(response.data.query.pages)[0]]});
-//     console.log('putting this in the bio reducer:', response.data.query.pages[Object.keys(response.data.query.pages)[0]])
-//   } catch (error) {
-//       console.log('error with bio get request', error);
-//   }
-// }
+function* removeBookmark(action){
+  //us try/catch for errors - replaces promise .then & .catch
+  try {
+    const response = yield axios.delete('/api/bookmark/', action.payload);
+    yield put({ type: 'GET_BOOKMARKS', payload: action.payload[1] });
+  } catch (error) {
+      console.log('error with bookmark delete saga', error);
+  }
+}
 
 function* bookmarkSaga() {
   yield takeLatest('ADD_BOOKMARK', addBookmark);
   yield takeLatest('GET_BOOKMARKS', getBookmarks);
-  // yield takeLatest('REMOVE_BOOKMARK', removeBookmark);
+  yield takeLatest('REMOVE_BOOKMARK', removeBookmark);
 }
 
 export default bookmarkSaga;
