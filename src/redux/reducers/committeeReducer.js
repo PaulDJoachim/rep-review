@@ -27,8 +27,32 @@ const jointCommittees = (state = [{test: 'object'}], action) => {
   }
 };
 
+const committee = (state = [{test: 'object'}], action) => {
+  switch (action.type) {
+    case 'SET_COMMITTEE':
+      return action.payload;
+    case 'CLEAR_COMMITTEE':
+      return [{test: 'object'}];
+    default:
+      return state;
+  }
+};
+
+const info = (state = [{test: 'object'}], action) => {
+  switch (action.type) {
+    case 'SET_COMMITTEE_INFO':
+      return action.payload;
+    case 'CLEAR_COMMITTEE_INFO':
+      return [{test: 'object'}];
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   houseCommittees,
   senateCommittees,
   jointCommittees,
+  committee,
+  info,
 });

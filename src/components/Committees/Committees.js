@@ -18,19 +18,22 @@ const listStyle = {
 
 class Committees extends Component {
 
-  handleCommitteeClick = (id) => {
-    this.props.history.push('/Committees/' + id)
+  handleCommitteeClick = (chamber, id) => {
+    this.props.history.push('/Committees/' + chamber + '/' + id)
   }
 
   render() {
-    if (this.props.committees.senateCommittees.committees === undefined) return null;
+    
+    if (this.props.committees.senateCommittees === undefined) return null;
+    if (this.props.committees.houseCommittees === undefined) return null;
+    if (this.props.committees.jointCommittees === undefined) return null;
     return(
       <>
         <h2>Senate Committees</h2>
         {/* {JSON.stringify(this.props.committees.senateCommittees.committees)} */}
         <List>
-          {this.props.committees.senateCommittees.committees.map((committee, index) => (
-            <ListItem button key={index} onClick={()=>this.handleCommitteeClick(committee.id)}>
+          {this.props.committees.senateCommittees.map((committee, index) => (
+            <ListItem button key={index} onClick={()=>this.handleCommitteeClick(committee.chamber, committee.id)}>
               <ListItemText>
                 {committee.name}
               </ListItemText>
@@ -39,8 +42,8 @@ class Committees extends Component {
         </List>
         <h2>House Committees</h2>
         <List>
-          {this.props.committees.houseCommittees.committees.map((committee, index) => (
-            <ListItem button key={index} onClick={()=>this.handleCommitteeClick(committee.id)}>
+          {this.props.committees.houseCommittees.map((committee, index) => (
+            <ListItem button key={index} onClick={()=>this.handleCommitteeClick(committee.chamber, committee.id)}>
               <ListItemText>
                 {committee.name}
               </ListItemText>
@@ -49,8 +52,8 @@ class Committees extends Component {
         </List>
         <h2>Joint Committees</h2>
         <List>
-          {this.props.committees.jointCommittees.committees.map((committee, index) => (
-            <ListItem button key={index} onClick={()=>this.handleCommitteeClick(committee.id)}>
+          {this.props.committees.jointCommittees.map((committee, index) => (
+            <ListItem button key={index} onClick={()=>this.handleCommitteeClick(committee.chamber, committee.id)}>
               <ListItemText>
                 {committee.name}
               </ListItemText>

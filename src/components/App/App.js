@@ -22,6 +22,7 @@ import MemberSearch from '../MemberSearch/MemberSearch';
 import StatePage from '../StatePage/StatePage';
 import MemberPage from '../MemberPage/MemberPage';
 import Committees from '../Committees/Committees';
+import CommitteePage from '../CommitteePage/CommitteePage';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 import './App.css';
@@ -92,10 +93,20 @@ class App extends Component {
                   component={Bookmarks}
                 /> */}
 
+                {/* <Committees
+                  exact
+                  path="/Committees"
+                  component={Committees}
+                /> */}
+
                 <Route path={`/Search/:stateName`} component={StatePage} />
                 <Route path={`/Members/:memberId`} component={MemberPage} />
                 <Route path={`/Bookmarks`} component={Bookmarks} />
-                <Route path={`/Committees`} component={Committees} />
+                <Route exact path={`/Committees`} component={Committees} />
+                <Route path={`/Committees/House/:committeeId`} component={CommitteePage} />
+                <Route path={`/Committees/Senate/:committeeId`} component={CommitteePage} />
+                <Route path={`/Committees/Joint/:committeeId`} component={CommitteePage} />
+
 
                 {/* If none of the other routes matched, we will show a 404. */}
                 <Route render={() => <h1>404</h1>} />
