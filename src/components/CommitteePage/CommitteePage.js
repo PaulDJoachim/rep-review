@@ -63,7 +63,6 @@ class CommitteePage extends Component {
               <ListItemText>
                 {person.name} - {person.party} <br />
                 {stateAbbrToName[person.state]}<br />
-                {person.note}
               </ListItemText>
             </ListItem>
           ))}

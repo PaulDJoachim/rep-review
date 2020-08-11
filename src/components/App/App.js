@@ -23,6 +23,7 @@ import StatePage from '../StatePage/StatePage';
 import MemberPage from '../MemberPage/MemberPage';
 import Committees from '../Committees/Committees';
 import CommitteePage from '../CommitteePage/CommitteePage';
+import BillsList from '../BillsList/BillsList';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 import './App.css';
@@ -45,6 +46,7 @@ class App extends Component {
     this.props.dispatch({type: 'GET_HOUSE_COMMITTEES'})
     this.props.dispatch({type: 'GET_SENATE_COMMITTEES'})
     this.props.dispatch({type: 'GET_JOINT_COMMITTEES'})
+    this.props.dispatch({type: 'GET_RECENT_BILLS'})
   }
 
 
@@ -106,7 +108,7 @@ class App extends Component {
                 <Route path={`/Committees/House/:committeeId`} component={CommitteePage} />
                 <Route path={`/Committees/Senate/:committeeId`} component={CommitteePage} />
                 <Route path={`/Committees/Joint/:committeeId`} component={CommitteePage} />
-
+                <Route exact path={`/Bills`} component={BillsList} />
 
                 {/* If none of the other routes matched, we will show a 404. */}
                 <Route render={() => <h1>404</h1>} />

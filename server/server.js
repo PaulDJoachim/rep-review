@@ -16,6 +16,7 @@ const memberRouter = require('./routes/member.router')
 const bioRouter = require('./routes/bio.router')
 const bookmarkRouter = require('./routes/bookmark.router')
 const committeesRouter = require('./routes/committees.router')
+const billsRouter = require('./routes/bills.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -36,6 +37,7 @@ app.use('/api/member', memberRouter);
 app.use('/api/bio', bioRouter);
 app.use('/api/bookmark', bookmarkRouter);
 app.use('/api/committees', committeesRouter);
+app.use('/api/bills', billsRouter);
 
 // Serve static files
 app.use(express.static('build'));
