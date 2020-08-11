@@ -21,6 +21,7 @@ import WelcomePage from '../WelcomePage/WelcomePage';
 import MemberSearch from '../MemberSearch/MemberSearch';
 import StatePage from '../StatePage/StatePage';
 import MemberPage from '../MemberPage/MemberPage';
+import Committees from '../Committees/Committees';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 import './App.css';
@@ -40,6 +41,9 @@ class App extends Component {
     this.props.dispatch({type: 'FETCH_USER'})
     this.props.dispatch({type: 'GET_HOUSE'})
     this.props.dispatch({type: 'GET_SENATE'})
+    this.props.dispatch({type: 'GET_HOUSE_COMMITTEES'})
+    this.props.dispatch({type: 'GET_SENATE_COMMITTEES'})
+    this.props.dispatch({type: 'GET_JOINT_COMMITTEES'})
   }
 
 
@@ -82,14 +86,16 @@ class App extends Component {
                   component={MemberSearch}
                 />
 
-                <Bookmarks
+                {/* <Bookmarks
                   exact
                   path="/Bookmarks"
                   component={Bookmarks}
-                />
+                /> */}
 
                 <Route path={`/Search/:stateName`} component={StatePage} />
                 <Route path={`/Members/:memberId`} component={MemberPage} />
+                <Route path={`/Bookmarks`} component={Bookmarks} />
+                <Route path={`/Committees`} component={Committees} />
 
                 {/* If none of the other routes matched, we will show a 404. */}
                 <Route render={() => <h1>404</h1>} />

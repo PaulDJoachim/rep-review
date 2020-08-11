@@ -7,6 +7,7 @@ import senateSaga from './senateSaga'
 import memberSaga from './memberSaga'
 import bioSaga from './bioSaga'
 import bookmarkSaga from './bookmarkSaga'
+import committeeSaga from './committeeSaga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -25,5 +26,6 @@ export default function* rootSaga() {
     memberSaga(),
     bioSaga(),
     bookmarkSaga(),
+    committeeSaga(),
   ]);
 }

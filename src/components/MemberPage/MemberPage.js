@@ -20,22 +20,19 @@ const placeholder = {
 }
 
 class MemberPage extends Component {
-
   componentDidMount() {
     this.props.dispatch({type:'CLEAR_MEMBER'});
-    this.props.dispatch({type:'GET_MEMBER', payload: this.props.match.params.memberId});
-    console.log(this.props.activeMember)
     this.props.dispatch({type:'CLEAR_BIO'});
-    this.props.dispatch({type:'GET_BIO', payload: this.props.activeMember});
-    console.log('these are the props on the member page:', this.props);
+    this.props.dispatch({type:'GET_MEMBER', payload: this.props.match.params.memberId});
+    // console.log(this.props.activeMember)
+    // console.log('these are the props on the member page:', this.props);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.url !== this.props.match.url) {
       this.props.dispatch({type:'CLEAR_MEMBER'});
-      this.props.dispatch({type:'GET_MEMBER', payload: this.props.match.params.memberId});
       this.props.dispatch({type:'CLEAR_BIO'});
-      this.props.dispatch({type:'GET_BIO', payload: this.props.activeMember});
+      this.props.dispatch({type:'GET_MEMBER', payload: this.props.match.params.memberId});
     }
   }
 
@@ -52,7 +49,12 @@ class MemberPage extends Component {
         <h2>Website: <a href={member.url}>{member.url}</a></h2>
         <h2>Phone: {member.roles[0].phone}</h2>
         <h2>Office: {member.roles[0].office}</h2>
-        {/* {JSON.stringify(this.props.member)} */}
+        <h2>Committes</h2>
+        <ul>
+        {this.props.member.roles[0].committees.map((committe)=>(
+        <li>{committe.title} of {committe.name}</li>))}
+        </ul>
+        {JSON.stringify(this.props.member.roles[0].committees)}
         <BookmarkButton />
       </>
     )

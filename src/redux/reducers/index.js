@@ -6,8 +6,8 @@ import house from './houseReducer'
 import senate from './senateReducer'
 import member from './memberReducer'
 import bio from './bioReducer'
-import activeMember from './activeMemberReducer'
 import bookmarks from './bookmarkReducer'
+import committees from './committeeReducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -23,8 +23,8 @@ const rootReducer = combineReducers({
   senate, // holds a list of all senate members
   member, // holds details about a single congress member
   bio, // holds biographical info about a single congress member
-  activeMember, // holds the firstname_lastname of the congressmember the user has clicked on
   bookmarks, // holds bookmarks of logged in user
+  committees, // holds lists of house, senate, and joint committees
 });
 
 export default rootReducer;

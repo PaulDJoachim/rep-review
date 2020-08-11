@@ -31,7 +31,6 @@ class StatePage extends Component {
 
   handleMemberClick = (id, firstName, lastName) => {
     this.props.history.push('/Members/' + id)
-    this.props.dispatch({type: 'SET_ACTIVE_MEMBER', payload: firstName+'_'+lastName })
   }
 
   render() {
