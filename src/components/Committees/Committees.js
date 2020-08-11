@@ -36,6 +36,7 @@ class Committees extends Component {
             <ListItem button key={index} onClick={()=>this.handleCommitteeClick(committee.chamber, committee.id)}>
               <ListItemText>
                 {committee.name}
+                {committee.id}
               </ListItemText>
             </ListItem>
           ))}

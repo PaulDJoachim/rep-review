@@ -3,6 +3,10 @@ import {connect} from 'react-redux';
 import background from '../StatePage/generic-avatar.png';
 import BookmarkButton from '../BookmarkButton/BookmarkButton'
 
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
 const listStyle = {
   height: '275px',
   width: '225px',
@@ -36,7 +40,12 @@ class MemberPage extends Component {
     }
   }
 
+  handleCommitteeClick = (chamber, id) => {
+    this.props.history.push('/Committees/' + chamber + '/' + id)
+  }
+
   render() {
+    let chamber = '2';
     const member = this.props.member;
     if (member.roles === undefined) return null;
     return(
@@ -50,11 +59,20 @@ class MemberPage extends Component {
         <h2>Phone: {member.roles[0].phone}</h2>
         <h2>Office: {member.roles[0].office}</h2>
         <h2>Committes</h2>
-        <ul>
-        {this.props.member.roles[0].committees.map((committe)=>(
-        <li>{committe.title} of {committe.name}</li>))}
-        </ul>
-        {JSON.stringify(this.props.member.roles[0].committees)}
+        <List>
+
+          {this.props.member.roles[0].committees.map((committee, index) => (
+
+            
+            console.log(chamber),
+            <ListItem button key={index} onClick={()=>this.handleCommitteeClick(committee.chamber, committee.code)}>
+              <ListItemText>
+                {committee.name}
+              </ListItemText>
+            </ListItem>
+          ))}
+        </List>
+        {/* {JSON.stringify(this.props.member.roles[0].committees)} */}
         <BookmarkButton />
       </>
     )
@@ -65,7 +83,6 @@ class MemberPage extends Component {
 const mapStateToProps = state => ({
   errors: state.errors,
   member: state.member,
-  activeMember: state.activeMember,
   bio: state.bio,
   user: state.user,
 });

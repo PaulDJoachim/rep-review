@@ -77,8 +77,8 @@ class ToggleButtons extends React.Component {
               </ToggleButton>}
             </ToggleButtonGroup>
           </div>
-          {JSON.stringify(this.props.bookmarks)}
-          {JSON.stringify(this.state)}
+          {/* {JSON.stringify(this.props.bookmarks)}
+          {JSON.stringify(this.state)} */}
           {/* <Typography variant="caption" gutterBottom>
             Bookmark Button
           </Typography> */}
