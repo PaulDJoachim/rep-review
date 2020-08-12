@@ -70,6 +70,7 @@ router.get('/:id', (req, res) => {
 
 router.put('/', (req,res)=> {
   console.log('delete req.body:', req.body)
+  // req.user.id --- GET USER ID FROM HERE
   const bookmarkUrl = req.body[0]
   const userId = req.body[1]
   const queryValues = [bookmarkUrl, userId]

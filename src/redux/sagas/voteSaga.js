@@ -14,8 +14,8 @@ function* getVotesSaga(action){
 function* getVoteInfoSaga(action){
   try {
     const response = yield axios.get('/api/votes/info/' + action.payload);
-    yield put({ type: 'SET_VOTE_INFO', payload: response.data.results[0]});
-    console.log('putting this in the vote info reducer:', response.data.results[0])
+    yield put({ type: 'SET_VOTE_INFO', payload: response.data.results.votes.vote});
+    console.log('putting this in the vote info reducer:', response.data.results.votes.vote)
   } catch (error) {
       console.log('error with vote get request', error);
   }

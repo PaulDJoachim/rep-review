@@ -21,10 +21,10 @@ router.get('/recent', (req, res) => {
 })
 
 
-router.get('/info/house/:billId', (req, res) => {
-  const session = req.params.billId[0];
-  const billId = req.params.billId.slice(1);
-  axios.get(`https://api.propublica.org/congress/v1/116/house/sessions/${session}/votes/${billId}.json`,
+router.get('/info/house/:rollCall', (req, res) => {
+  const session = req.params.rollCall[0];
+  const rollCall = req.params.rollCall.slice(1);
+  axios.get(`https://api.propublica.org/congress/v1/116/house/sessions/${session}/votes/${rollCall}.json`,
   {headers: {
     'X-API-Key': `${process.env.PROPUBLICA_API_KEY}`
   }}
@@ -40,10 +40,10 @@ router.get('/info/house/:billId', (req, res) => {
 })
 
 
-router.get('/info/senate/:billId', (req, res) => {
-  const session = req.params.billId[0];
-  const billId = req.params.billId.slice(1);
-  axios.get(`https://api.propublica.org/congress/v1/116/senate/sessions/${session}/votes/${billId}.json`,
+router.get('/info/senate/:rollCall', (req, res) => {
+  const session = req.params.rollCall[0];
+  const rollCall = req.params.rollCall.slice(1);
+  axios.get(`https://api.propublica.org/congress/v1/116/senate/sessions/${session}/votes/${rollCall}.json`,
   {headers: {
     'X-API-Key': `${process.env.PROPUBLICA_API_KEY}`
   }}

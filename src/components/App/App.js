@@ -115,7 +115,8 @@ class App extends Component {
                 <Route exact path={`/Bills`} component={BillsList} />
                 <Route exact path={`/Bills/:billId`} component={BillPage} />
                 <Route exact path={`/Votes`} component={VotesList} />
-                <Route exact path={`/Votes/:billId`} component={VotePage} />
+                <Route exact path={`/Votes/Senate/:rollCall`} component={VotePage} />
+                <Route exact path={`/Votes/House/:rollCall`} component={VotePage} />
 
                 {/* If none of the other routes matched, we will show a 404. */}
                 <Route render={() => <h1>404</h1>} />
