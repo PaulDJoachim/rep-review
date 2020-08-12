@@ -9,6 +9,7 @@ import bio from './bioReducer'
 import bookmarks from './bookmarkReducer'
 import committees from './committeeReducer'
 import bills from './billReducer'
+import votes from './voteReducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   bookmarks, // holds bookmarks of logged in user
   committees, // holds lists of house, senate, and joint committees
   bills, // holds lists of bills & bill data
+  votes, // hodls lists of votes & vote data
 });
 
 export default rootReducer;

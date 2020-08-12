@@ -53,7 +53,7 @@ class StatePage extends Component {
                 <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
               </div>
               <ListItemText>
-                {person.first_name} {person.last_name}
+                {person.first_name} {person.last_name} - {person.party}
               </ListItemText>
             </ListItem>
           ))}
@@ -66,7 +66,8 @@ class StatePage extends Component {
                 <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
               </div>
               <ListItemText>
-                District: {person.district}, {person.first_name} {person.last_name} - {person.party}
+                District: {person.district} <br />
+                {person.first_name} {person.last_name} - {person.party}
               </ListItemText>
             </ListItem>
           ))}

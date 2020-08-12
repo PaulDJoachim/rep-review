@@ -1,17 +1,17 @@
 import { combineReducers } from 'redux';
 
-const recentBills = (state = [{test: 'object'}], action) => {
+const recentVotes = (state = [{test: 'object'}], action) => {
   switch (action.type) {
-    case 'SET_RECENT_BILLS':
+    case 'SET_RECENT_VOTES':
       return action.payload;
     default:
       return state;
   }
 };
 
-const billInfo = (state = [{test: 'object'}], action) => {
+const voteInfo = (state = [{test: 'object'}], action) => {
   switch (action.type) {
-    case 'SET_BILL_INFO':
+    case 'SET_VOTE_INFO':
       return action.payload;
     default:
       return state;
@@ -19,6 +19,6 @@ const billInfo = (state = [{test: 'object'}], action) => {
 };
 
 export default combineReducers({
-  recentBills,
-  billInfo,
+  recentVotes,
+  voteInfo,
 });

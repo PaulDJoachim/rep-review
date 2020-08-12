@@ -11,9 +11,20 @@ function* getBillsSaga(action){
   }
 }
 
+function* getBillInfoSaga(action){
+  try {
+    const response = yield axios.get('/api/bills/info/' + action.payload);
+    yield put({ type: 'SET_BILL_INFO', payload: response.data.results[0]});
+    console.log('putting this in the bill info reducer:', response.data.results[0])
+  } catch (error) {
+      console.log('error with bill info get request', error);
+  }
+}
+
 
 function* billSaga() {
   yield takeLatest('GET_RECENT_BILLS', getBillsSaga);
+  yield takeLatest('GET_BILL_INFO', getBillInfoSaga);
 }
 
 export default billSaga;

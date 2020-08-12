@@ -9,6 +9,7 @@ import bioSaga from './bioSaga'
 import bookmarkSaga from './bookmarkSaga'
 import committeeSaga from './committeeSaga'
 import billSaga from './billSaga'
+import voteSaga from './voteSaga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -29,5 +30,6 @@ export default function* rootSaga() {
     bookmarkSaga(),
     committeeSaga(),
     billSaga(),
+    voteSaga(),
   ]);
 }

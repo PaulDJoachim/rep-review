@@ -22,7 +22,7 @@ class BillsList extends Component {
   //   this.props.dispatch({type:'GET_RECENT_BILLS'});
   // }
 
-  handleCommitteeClick = (id) => {
+  handleBillClick = (id) => {
     this.props.history.push('/Bills/' + id)
   }
 
@@ -35,10 +35,11 @@ class BillsList extends Component {
         {/* {JSON.stringify(this.props.bills)} */}
         <List>
           {this.props.bills.map((bill, index) => (
-            <ListItem button key={index} onClick={()=>this.handleCommitteeClick(bill.id)}>
+            <ListItem button key={index} onClick={()=>this.handleBillClick(bill.bill_slug)}>
               <ListItemText>
                 {bill.number} <br />
-                {bill.title}
+                {bill.title} <br />
+                Last Update: {bill.latest_major_action_date}
               </ListItemText>
             </ListItem>
           ))}
