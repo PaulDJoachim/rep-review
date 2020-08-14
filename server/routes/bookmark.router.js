@@ -1,5 +1,5 @@
 const express = require('express');
-
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const { default: axios } = require('axios');
 const pool = require('../modules/pool');
 const router = express.Router();
@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 
-router.post('/', async (req, res) => {  
+router.post('/', rejectUnauthenticated, async (req, res) => {  
   console.log('this is bookmark post req.body:', req.body)
 
   const bookmarkUrl = req.body[0]
@@ -49,7 +49,7 @@ router.post('/', async (req, res) => {
 })
 
 
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   console.log('this is bookmark GET, user id =',req.params.id)
   const userId = req.params.id;
   const queryText = `
@@ -68,7 +68,7 @@ router.get('/:id', (req, res) => {
 })
 
 
-router.put('/', (req,res)=> {
+router.put('/', rejectUnauthenticated, (req,res)=> {
   console.log('delete req.body:', req.body)
   // req.user.id --- GET USER ID FROM HERE
   const bookmarkUrl = req.body[0]

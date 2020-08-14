@@ -27,6 +27,7 @@ import BillsList from '../BillsList/BillsList';
 import BillPage from '../BillPage/BillPage';
 import VotesList from '../VotesList/VotesList';
 import VotePage from '../VotePage/VotePage';
+import StatementList from '../StatementList/StatementList';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 import './App.css';
@@ -51,6 +52,7 @@ class App extends Component {
     this.props.dispatch({type: 'GET_JOINT_COMMITTEES'})
     this.props.dispatch({type: 'GET_RECENT_BILLS'})
     this.props.dispatch({type: 'GET_RECENT_VOTES'})
+    this.props.dispatch({type: 'GET_RECENT_STATEMENTS'})
   }
 
 
@@ -117,6 +119,7 @@ class App extends Component {
                 <Route exact path={`/Votes`} component={VotesList} />
                 <Route exact path={`/Votes/Senate/:rollCall`} component={VotePage} />
                 <Route exact path={`/Votes/House/:rollCall`} component={VotePage} />
+                <Route exact path={`/News`} component={StatementList} />
 
                 {/* If none of the other routes matched, we will show a 404. */}
                 <Route render={() => <h1>404</h1>} />

@@ -18,6 +18,8 @@ const bookmarkRouter = require('./routes/bookmark.router')
 const committeesRouter = require('./routes/committees.router')
 const billsRouter = require('./routes/bills.router')
 const votesRouter = require('./routes/votes.router')
+const zipRouter = require('./routes/zip.router')
+const statementsRouter = require('./routes/statements.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -40,6 +42,8 @@ app.use('/api/bookmark', bookmarkRouter);
 app.use('/api/committees', committeesRouter);
 app.use('/api/bills', billsRouter);
 app.use('/api/votes', votesRouter);
+app.use('/api/zip', zipRouter);
+app.use('/api/statements', statementsRouter);
 
 // Serve static files
 app.use(express.static('build'));
