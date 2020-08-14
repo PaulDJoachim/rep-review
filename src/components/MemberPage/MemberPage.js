@@ -29,6 +29,8 @@ class MemberPage extends Component {
     this.props.dispatch({type:'CLEAR_BIO'});
     this.props.dispatch({type:'GET_MEMBER', payload: this.props.match.params.memberId});
     this.props.dispatch({type:'GET_MEMBER_STATEMENTS', payload: this.props.match.params.memberId});
+    this.props.dispatch({type:'GET_MEMBER_BILLS', payload: this.props.match.params.memberId});
+    this.props.dispatch({type:'GET_MEMBER_VOTES', payload: this.props.match.params.memberId});
     // console.log(this.props.activeMember)
     // console.log('these are the props on the member page:', this.props);
   }
@@ -39,11 +41,21 @@ class MemberPage extends Component {
       this.props.dispatch({type:'CLEAR_BIO'});
       this.props.dispatch({type:'GET_MEMBER', payload: this.props.match.params.memberId});
       this.props.dispatch({type:'GET_MEMBER_STATEMENTS', payload: this.props.match.params.memberId});
+      this.props.dispatch({type:'GET_MEMBER_BILLS', payload: this.props.match.params.memberId});
+      this.props.dispatch({type:'GET_MEMBER_VOTES', payload: this.props.match.params.memberId});
     }
   }
 
   handleCommitteeClick = (chamber, id) => {
     this.props.history.push('/Committees/' + chamber + '/' + id)
+  }
+
+  handleVoteClick = (chamber, session, rollCall) => {
+    this.props.history.push('/Votes/' + chamber + '/' + session + rollCall)
+  }
+
+  handleBillClick = (id) => {
+    this.props.history.push('/Bills/' + id)
   }
 
   render() {
@@ -65,7 +77,7 @@ class MemberPage extends Component {
           {this.props.statements.map((statement, index) => (
             <a style={{ textDecoration: 'none' }} href={statement.url}>
               <ListItem button key={index + 's'}>
-                <ListItemText>
+                <ListItemText key={index + 's'}>
                   {statement.date} <br />
                   {statement.title}
                 </ListItemText>
@@ -73,11 +85,36 @@ class MemberPage extends Component {
             </a>
           ))}
         </List>
+        <h2>Recent Bills Introduced:</h2>
+        <List>
+          {this.props.bills.map((bill, index) => (
+              <ListItem button key={index + 'b'} onClick={()=>this.handleBillClick(bill.bill_id.slice(0, -4))}>
+                <ListItemText key={index + 'b'}>
+                  {bill.introduced_date} <br />
+                  {bill.number} <br />
+                  {bill.title}
+                </ListItemText>
+              </ListItem>
+          ))}
+        </List>
+        <h2>Recent Voting History:</h2>
+        <List>
+          {this.props.votes.map((vote, index) => (
+              <ListItem button key={index + 'v'} onClick={()=>this.handleVoteClick(vote.chamber, vote.session, vote.roll_call)}>
+                <ListItemText key={index + 'v'}>
+                  {vote.date} <br />
+                  Roll Call: {vote.roll_call} <br />
+                  {vote.description} <br />
+                  {vote.position}
+                </ListItemText>
+              </ListItem>
+          ))}
+        </List>
         <h2>Committes</h2>
         <List>
           {this.props.member.roles[0].committees.map((committee, index) => (
             <ListItem button key={index} onClick={()=>this.handleCommitteeClick(committee.chamber, committee.code)}>
-              <ListItemText>
+              <ListItemText key={index}>
                 {committee.name}
               </ListItemText>
             </ListItem>
@@ -96,7 +133,9 @@ const mapStateToProps = state => ({
   member: state.member,
   bio: state.bio,
   user: state.user,
-  statements: state.statements.memberStatements
+  statements: state.statements.memberStatements,
+  bills: state.bills.memberBills,
+  votes: state.votes.memberVotes,
 });
 
 

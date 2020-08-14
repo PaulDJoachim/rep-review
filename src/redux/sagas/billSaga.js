@@ -21,10 +21,22 @@ function* getBillInfoSaga(action){
   }
 }
 
+function* getMemberBillsSaga(action){
+  try {
+    const response = yield axios.get('/api/member/bills/' + action.payload);
+    yield put({ type: 'SET_MEMBER_BILLS', payload: response.data.results[0].bills});
+    console.log('putting this in member bills reducer:', response.data.results[0].bills)
+  } catch (error) {
+      console.log('error with member bills get request', error);
+  }
+}
+
+
 
 function* billSaga() {
   yield takeLatest('GET_RECENT_BILLS', getBillsSaga);
   yield takeLatest('GET_BILL_INFO', getBillInfoSaga);
+  yield takeLatest('GET_MEMBER_BILLS', getMemberBillsSaga);
 }
 
 export default billSaga;

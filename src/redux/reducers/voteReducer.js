@@ -18,7 +18,17 @@ const voteInfo = (state = [{test: 'object'}], action) => {
   }
 };
 
+const memberVotes = (state = [{test: 'object'}], action) => {
+  switch (action.type) {
+    case 'SET_MEMBER_VOTES':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   recentVotes,
   voteInfo,
+  memberVotes,
 });

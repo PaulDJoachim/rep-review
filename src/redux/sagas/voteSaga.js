@@ -21,10 +21,21 @@ function* getVoteInfoSaga(action){
   }
 }
 
+function* getMemberVotesSaga(action){
+  try {
+    const response = yield axios.get('/api/member/votes/' + action.payload);
+    yield put({ type: 'SET_MEMBER_VOTES', payload: response.data.results[0].votes});
+    console.log('putting this in the member votes reducer:', response.data.results[0].votes)
+  } catch (error) {
+      console.log('error with member votes get request', error);
+  }
+}
+
 
 function* voteSaga() {
   yield takeLatest('GET_RECENT_VOTES', getVotesSaga);
   yield takeLatest('GET_VOTE_INFO', getVoteInfoSaga);
+  yield takeLatest('GET_MEMBER_VOTES', getMemberVotesSaga);
 }
 
 export default voteSaga;
