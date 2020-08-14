@@ -15,7 +15,7 @@ function* addBookmark(action){
 function* getBookmarks(action){
   //us try/catch for errors - replaces promise .then & .catch
   try {
-    const response = yield axios.get('/api/bookmark/' + action.payload);
+    const response = yield axios.get('/api/bookmark/');
     yield put({ type: 'SET_BOOKMARKS', payload: response.data});
     console.log('putting this in the bookmarks reducer:', response.data)
   } catch (error) {

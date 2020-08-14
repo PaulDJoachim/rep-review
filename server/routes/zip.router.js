@@ -5,7 +5,7 @@ const { default: axios } = require('axios');
 const router = express.Router();
 
 
-
+// MOVE THIS TO USER ROUTER
 router.put('/', rejectUnauthenticated, (req, res) => {
   console.log(req.body.zip)
   const queryText = `

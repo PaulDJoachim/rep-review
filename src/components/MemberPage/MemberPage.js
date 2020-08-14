@@ -9,6 +9,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 const listStyle = {
   height: '275px',
@@ -35,16 +38,28 @@ const styles = theme => ({
     display: 'flex',
   },
   paper: {
-    margin: theme.spacing.unit,
+    padding: theme.spacing.unit * 2,
+    textAlign: 'left',
+    color: theme.palette.text.secondary,
   },
-  svg: {
-    width: 100,
-    height: 100,
+  listPaper: {
+    padding: 0,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    margin: '1px',
   },
   polygon: {
     fill: theme.palette.common.white,
     stroke: theme.palette.divider,
     strokeWidth: 1,
+  },
+  pic: {
+    minWidth: '225px',
+    marginTop: '20px',
+    marginBottom: '20px'
+  },
+  spacer: {
+    marginTop: '20px',
   },
 });
 
@@ -116,16 +131,28 @@ class MemberPage extends Component {
     if (member.roles === undefined) return null;
     return(
       <>
-        <div style={placeholder}>
-          <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${member.id}.jpg`} />
-        </div>
-        <Typography variant="h3">{member.first_name} {member.last_name} - {member.roles[0].party}</Typography>
-        <Typography variant="body1">{this.props.bio.extract}</Typography> <br />
+        <div className={classes.spacer} />
+        <Paper className={classes.paper}>
+          <Grid container>
+            <Grid className={classes.pic} item xs={12} md={3}>
+              <div style={placeholder}>
+                <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${member.id}.jpg`} />
+              </div>
+            </Grid>
+            <Grid item xs={12} md={9}>
+              <Typography variant="h3">{member.first_name} {member.last_name} - {member.roles[0].party}</Typography>
+              <Typography variant="body1">{this.props.bio.extract}</Typography> <br />
+            </Grid>
+          </Grid>
+        </Paper>
+        <Paper className={classes.paper}>
+        <Typography variant="h5">Contact Information</Typography>
         <Typography variant="h6">Website: <a href={member.url}>{member.url}</a></Typography>
         <Typography variant="h6">Phone: {member.roles[0].phone}</Typography>
         <Typography variant="h6">Office: {member.roles[0].office}</Typography><br />
+        </Paper>
         <Typography variant="h5" onClick={this.handleStatementCollapse}>Recent Statements:</Typography>
-        <List className={classes.root}>
+        <List>
           <div className={classes.container}>
             <Collapse in={this.state.collapseStatement}>
               {this.props.statements.map((statement, index) => (
@@ -142,7 +169,7 @@ class MemberPage extends Component {
           </div>
         </List>
         <Typography variant="h5" onClick={this.handleBillCollapse}>Recent Bills Introduced:</Typography>
-        <List className={classes.root}>
+        <List>
           <div className={classes.container}>
             <Collapse in={this.state.collapseBill}>
               {this.props.bills.map((bill, index) => (
@@ -158,7 +185,7 @@ class MemberPage extends Component {
           </div>
         </List>
         <Typography variant="h5" onClick={this.handleVoteCollapse}>Recent Voting History:</Typography>
-        <List className={classes.root}>
+        <List>
           <div className={classes.container}>
             <Collapse in={this.state.collapseVote}>
               {this.props.votes.map((vote, index) => (
@@ -175,7 +202,7 @@ class MemberPage extends Component {
           </div>
         </List>
         <Typography variant="h5" onClick={this.handleCommitteeCollapse}>Committes</Typography>
-        <List className={classes.root}>
+        <List>
           <div className={classes.container}>
             <Collapse in={this.state.collapseCommittee}>
               {this.props.member.roles[0].committees.map((committee, index) => (
@@ -208,4 +235,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps)(MemberPage);
+export default connect(mapStateToProps)(withStyles(styles)(MemberPage));

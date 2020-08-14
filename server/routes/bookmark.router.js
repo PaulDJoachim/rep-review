@@ -49,9 +49,9 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
 })
 
 
-router.get('/:id', rejectUnauthenticated, (req, res) => {
-  console.log('this is bookmark GET, user id =',req.params.id)
-  const userId = req.params.id;
+router.get('/', rejectUnauthenticated, (req, res) => {
+  console.log('this is bookmark GET, user id =',req.body.id)
+  const userId = req.body.id;
   const queryText = `
   SELECT bookmarks.url FROM bookmarks
   JOIN user_bookmarks ON bookmarks.id = user_bookmarks.bookmark_id
@@ -67,7 +67,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   })
 })
 
-
+// MAKE THIS A .DELETE!!!
 router.put('/', rejectUnauthenticated, (req,res)=> {
   console.log('delete req.body:', req.body)
   // req.user.id --- GET USER ID FROM HERE

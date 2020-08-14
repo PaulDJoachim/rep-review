@@ -58,8 +58,6 @@ const styles = theme => ({
     width: 180,
     marginLeft: 25,
   },
-  login: {
-  }
 });
 
 class ResponsiveDrawer extends React.Component {
