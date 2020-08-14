@@ -11,6 +11,7 @@ import committees from './committeeReducer'
 import bills from './billReducer'
 import votes from './voteReducer'
 import statements from './statementReducer'
+import district from './districtReducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   bills, // holds lists of bills & bill data
   votes, // hodls lists of votes & vote data
   statements, // holds statement info
+  district, // holds district info
 });
 
 export default rootReducer;

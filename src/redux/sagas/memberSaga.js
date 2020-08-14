@@ -20,6 +20,7 @@ function* getMemberSaga(action){
   }
 }
 
+
 function* memberSaga() {
   yield takeLatest('GET_MEMBER', getMemberSaga);
 }

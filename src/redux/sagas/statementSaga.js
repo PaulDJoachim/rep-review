@@ -24,9 +24,20 @@ function* getStatementsSaga(action){
   }
 }
 
+function* getMemberStatementsSaga(action){
+  try {
+    const response = yield axios.get('/api/member/statements/' + action.payload);
+    yield put({ type: 'SET_MEMBER_STATEMENTS', payload: response.data.results});
+    console.log('putting this in the member statements reducer:', response.data.results)
+  } catch (error) {
+      console.log('error with member get request', error);
+  }
+}
+
 
 function* statementSaga() {
   yield takeLatest('GET_RECENT_STATEMENTS', getStatementsSaga);
+  yield takeLatest('GET_MEMBER_STATEMENTS', getMemberStatementsSaga);
 }
 
 export default statementSaga;

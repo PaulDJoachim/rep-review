@@ -28,15 +28,17 @@ class MemberPage extends Component {
     this.props.dispatch({type:'CLEAR_MEMBER'});
     this.props.dispatch({type:'CLEAR_BIO'});
     this.props.dispatch({type:'GET_MEMBER', payload: this.props.match.params.memberId});
+    this.props.dispatch({type:'GET_MEMBER_STATEMENTS', payload: this.props.match.params.memberId});
     // console.log(this.props.activeMember)
     // console.log('these are the props on the member page:', this.props);
   }
-
+  
   componentDidUpdate(prevProps) {
     if (prevProps.match.url !== this.props.match.url) {
       this.props.dispatch({type:'CLEAR_MEMBER'});
       this.props.dispatch({type:'CLEAR_BIO'});
       this.props.dispatch({type:'GET_MEMBER', payload: this.props.match.params.memberId});
+      this.props.dispatch({type:'GET_MEMBER_STATEMENTS', payload: this.props.match.params.memberId});
     }
   }
 
@@ -58,13 +60,22 @@ class MemberPage extends Component {
         <h2>Website: <a href={member.url}>{member.url}</a></h2>
         <h2>Phone: {member.roles[0].phone}</h2>
         <h2>Office: {member.roles[0].office}</h2>
+        <h2>Recent Statements:</h2>
+        <List>
+          {this.props.statements.map((statement, index) => (
+            <a style={{ textDecoration: 'none' }} href={statement.url}>
+              <ListItem button key={index + 's'}>
+                <ListItemText>
+                  {statement.date} <br />
+                  {statement.title}
+                </ListItemText>
+              </ListItem>
+            </a>
+          ))}
+        </List>
         <h2>Committes</h2>
         <List>
-
           {this.props.member.roles[0].committees.map((committee, index) => (
-
-            
-            console.log(chamber),
             <ListItem button key={index} onClick={()=>this.handleCommitteeClick(committee.chamber, committee.code)}>
               <ListItemText>
                 {committee.name}
@@ -85,6 +96,7 @@ const mapStateToProps = state => ({
   member: state.member,
   bio: state.bio,
   user: state.user,
+  statements: state.statements.memberStatements
 });
 
 
