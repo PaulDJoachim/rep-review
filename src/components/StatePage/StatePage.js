@@ -29,7 +29,7 @@ const placeholder = {
 
 class StatePage extends Component {
 
-  handleMemberClick = (id, firstName, lastName) => {
+  handleMemberClick = (id) => {
     this.props.history.push('/Members/' + id)
   }
 
@@ -48,7 +48,7 @@ class StatePage extends Component {
         <h2>Senate Members</h2>
         <List>
           {thisStateSenate.map((person, index) => (
-            <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id, person.first_name, person.last_name)}>
+            <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id)}>
               <div style={placeholder}>
                 <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
               </div>
@@ -61,7 +61,7 @@ class StatePage extends Component {
         <h2>House Members</h2>
         <List>
           {newArr.map((person, index) => (
-            <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id, person.first_name, person.last_name)}>
+            <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id)}>
               <div style={placeholder}>
                 <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
               </div>

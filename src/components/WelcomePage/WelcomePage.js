@@ -64,12 +64,22 @@ class WelcomePage extends Component {
     } else {this.setState({invalidZip: true})}
   }
 
+  componentDidMount() {
+    if (this.props.user.zip !== undefined){
+      if (this.props.user.zip.length === 5){
+        this.setState({haveZip: true})
+    }}
+  }
   componentDidUpdate(prevProps) {
     if (this.props.user.zip !== prevProps.user.zip) {
       if (this.props.user.zip.length === 5){
         this.setState({haveZip: true})
         this.props.dispatch({type: 'GET_DISTRICT', payload: this.props.user.zip})
     }} 
+  }
+
+  handleMemberClick = (id) => {
+    this.props.history.push('/Members/' + id)
   }
 
   render() {
@@ -112,7 +122,7 @@ class WelcomePage extends Component {
             <h2>Your Senators:</h2>
             <List>
               {yourSenateRep.map((person, index) => (
-                <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id, person.first_name, person.last_name)}>
+                <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id)}>
                   <div style={placeholder}>
                     <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
                   </div>
@@ -126,7 +136,7 @@ class WelcomePage extends Component {
               {JSON.stringify(yourHouseRep)}
               <List>
                 {yourHouseRep.map((person, index) => (
-                  <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id, person.first_name, person.last_name)}>
+                  <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id)}>
                     <div style={placeholder}>
                       <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
                     </div>
