@@ -50,8 +50,8 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
 
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-  console.log('this is bookmark GET, user id =',req.body.id)
-  const userId = req.body.id;
+  console.log('this is bookmark GET, user id =',req.user.id)
+  const userId = req.user.id;
   const queryText = `
   SELECT bookmarks.url FROM bookmarks
   JOIN user_bookmarks ON bookmarks.id = user_bookmarks.bookmark_id

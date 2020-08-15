@@ -30,7 +30,9 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth,
       flexShrink: 0,
+      backgroundColor: 'red',
     },
+    
   },
   appBar: {
     marginLeft: drawerWidth,
@@ -55,8 +57,8 @@ const styles = theme => ({
   },
   logo: {
     height: 200,
-    width: 180,
-    marginLeft: 25,
+    width: 150,
+    marginLeft: 35,
   },
 });
 
@@ -118,7 +120,7 @@ class ResponsiveDrawer extends React.Component {
               {this.props.user.id ? 
                 <Grid item>
                 <p>Hello {this.props.user.username}</p>
-                <p><Button onClick={() => this.props.dispatch({ type: 'LOGOUT' })} variant="contained" color="default">Log Out</Button> </p>
+                <p><Button onClick={() => this.props.dispatch({ type: 'LOGOUT' })} variant="contained" color="secondary">Log Out</Button> </p>
                 </ Grid>
                 :<Modal />}
             </Grid>

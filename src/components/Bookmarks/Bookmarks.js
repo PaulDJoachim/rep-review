@@ -26,7 +26,9 @@ const placeholder = {
 
 
 class Bookmarks extends Component {
+
   bookmarkArr = [];
+
 
   handleMemberClick = (id, firstName, lastName) => {
     this.props.history.push('/Members/' + id)
@@ -34,30 +36,30 @@ class Bookmarks extends Component {
   }
 
   componentDidMount() {
+    // this.props.dispatch({type:'CLEAR_BOOKMARKS'});
     this.props.dispatch({type:'GET_BOOKMARKS', payload: this.props.user.id});
-    if (this.props.bookmarks[0].url !== undefined){
-      this.bookmarkArr = [];
-      this.props.bookmarks.map((mark)=>{
-        this.bookmarkArr.push(mark.url.slice(9))
-      })
-    }
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.user !== this.props.user) {
+    if (prevProps.user.id !== this.props.user.id) {
+      console.log('USER CHANGE DETECTED!!!!!!!')
       this.props.dispatch({type:'GET_BOOKMARKS', payload: this.props.user.id});
+
     }
-    // check if the bookmarks have arrived and add only the member IDs to a new array
-    if (this.props.bookmarks[0].url !== undefined){
-      this.bookmarkArr = [];
-      this.props.bookmarks.map((mark)=>{
-        this.bookmarkArr.push(mark.url.slice(9))
-      })
-    }
+    
   }
 
   render() {
+    // check if the bookmarks have arrived and add only the member IDs to a new array
+    if (this.props.bookmarks.length === 0) return null;
+    if (this.props.bookmarks[0].url === undefined) return null;
+    this.bookmarkArr = [];
+    this.props.bookmarks.map((mark)=>(
+    this.bookmarkArr.push(mark.url.slice(9))
+    ))
+
     const memberArr = []
+    // filter all house and senate reps flagged by the bookmarkArr into a new array containing their actual objects
     this.bookmarkArr.map((mark)=>{
       if (this.props.senate.filter(person => person.id === mark)[0] !== undefined){
       memberArr.push(this.props.senate.filter(person => person.id === mark)[0])}
@@ -65,13 +67,11 @@ class Bookmarks extends Component {
       memberArr.push(this.props.house.filter(person => person.id === mark)[0])}
     })
 
-    if (this.props.bookmarks.length === 0) return null;
-    if (this.props.bookmarks[0].url === undefined) return null;
+
 
     return(
       <>
-      <h1>This is the Bookmarks Page!</h1>
-      <h2>Bookmarks</h2>
+      <h1>{this.props.user.username}'s Bookmarks</h1>
         <List>
           {memberArr.map((person, index) => (
             <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id, person.first_name, person.last_name)}>
@@ -86,17 +86,8 @@ class Bookmarks extends Component {
         </List>
 
 
-
-
-      {/* <ul>
-      {memberArr.map((person)=>(
-        <li>{person.first_name} {person.last_name}</li>
-      ))}
-      </ul>
-      {JSON.stringify(this.bookmarkArr)}
-      {/* {JSON.stringify(this.props.house)} */}
-
-      {JSON.stringify(memberArr)}
+      {/* {JSON.stringify(this.bookmarkArr)}
+      {JSON.stringify(memberArr)} */}
       </>
     )
   } 

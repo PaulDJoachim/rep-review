@@ -39,6 +39,7 @@ const styles = theme => ({
     minWidth: '350px',
   },
   paper: {
+    marginTop: '40px',
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
     color: theme.palette.text.secondary,
@@ -92,6 +93,11 @@ class WelcomePage extends Component {
       if (this.props.user.zip.length === 5){
         this.setState({haveZip: true})
     }}
+    if (this.props.user.zip !== undefined && this.props.user.zip !== null){
+      if (this.props.user.zip.length === 5){
+        this.setState({haveZip: true})
+        this.props.dispatch({type: 'GET_DISTRICT', payload: this.props.user.zip})
+    }}
   }
   componentDidUpdate(prevProps) {
     if (this.props.user.zip !== undefined && this.props.user.zip !== null){
@@ -123,9 +129,12 @@ class WelcomePage extends Component {
           {this.props.user.id ? 
             <>
             <Paper className={classes.paper}>
-              <FormControl> 
-                <Typography variant="h6">Enter your zip code for the latest information from your house and senate representatives.</Typography>
-                <Typography variant="body1">Your Zip Code is {this.props.user.zip}</Typography>
+              <FormControl>
+                {!this.props.user.zip ? 
+                  <Typography variant="h6">Enter your zip code for the latest information from your house and senate representatives.</Typography>
+                :
+                  <Typography variant="body1">Your Zip Code is {this.props.user.zip}</Typography>
+                }
                 <TextField
                   onChange={this.handleZipChange}
                   error={this.state.invalidZip}
@@ -149,7 +158,7 @@ class WelcomePage extends Component {
             </Paper>
           }
         </div>
-        {this.state.haveZip ?
+        {this.props.user.zip ?
           <div className={classes.root}>
             <Grid container xs={12}>
               <Grid item xs={12} sm={6}>
