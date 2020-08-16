@@ -11,12 +11,12 @@ import { connect } from 'react-redux';
 const styles = theme => ({
   toggleContainer: {
     height: 56,
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
+    width: 56,
+    padding: `${theme.spacing.unit*2}px ${theme.spacing.unit * 3}px`,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    margin: `${theme.spacing.unit}px 0`,
-    background: theme.palette.background.default,
+    margin: `auto`,
   },
 });
 
@@ -58,11 +58,11 @@ class ToggleButtons extends React.Component {
 
             <ToggleButtonGroup value={bookmarked} exclusive >
               {this.state.bookmarked ? 
-              <ToggleButton selected={true} value={false} onClick={this.handleRemoveBookmark}>
-                <StarIcon />
+              <ToggleButton className={classes.toggleContainer} selected={true} value={false} onClick={this.handleRemoveBookmark}>
+                <StarIcon/>
               </ToggleButton>
               :
-              <ToggleButton selected={false} value={true} onClick={this.handleAddBookmark}>
+              <ToggleButton className={classes.toggleContainer} selected={false} value={true} onClick={this.handleAddBookmark}>
                 <StarBorderIcon />
               </ToggleButton>}
             </ToggleButtonGroup>

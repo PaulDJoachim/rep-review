@@ -46,7 +46,8 @@ class votesList extends Component {
                 <ListItemText>
                   {/* {JSON.stringify(vote)}
                   {vote.bill.number} <br /> */}
-                  Session: {vote.session} Roll Call: {vote.roll_call} <br />
+                  {vote.date} <br />
+                  {vote.chamber} Roll Call: {vote.roll_call} <br />
                   {vote.description} <br />
                   {vote.result}
                 </ListItemText>

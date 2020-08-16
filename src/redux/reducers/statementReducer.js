@@ -18,8 +18,18 @@ const memberStatements = (state = [{test: 'object'}], action) => {
   }
 };
 
+const statementSearch = (state = [{test: 'object'}], action) => {
+  switch (action.type) {
+    case 'SET_STATEMENT_SEARCH':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 
 export default combineReducers({
   recentStatements,
   memberStatements,
+  statementSearch,
 });

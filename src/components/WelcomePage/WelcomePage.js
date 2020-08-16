@@ -81,6 +81,7 @@ class WelcomePage extends Component {
 
   handleZipChange = (event) => {
     console.log(event.target.value)
+    // make sure only numbers with fewer than 6 digits can be entered
     if (!isNaN(event.target.value) && event.target.value.length < 6){
       this.setState({zip: event.target.value})
     }
@@ -122,6 +123,7 @@ class WelcomePage extends Component {
   }
 
   render() {
+    // if (this.props.statements.results === undefined) return null;
     const { classes } = this.props;
     const yourHouseRep = this.props.house.filter(person => person.state === this.props.district.state && Number(person.district) === Number(this.props.district.district));
     const yourSenateRep = this.props.senate.filter(person => person.state === this.props.district.state);
@@ -182,9 +184,9 @@ class WelcomePage extends Component {
                         <div style={placeholder}>
                           <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
                         </div>
-                        <Typography variant="h6">
-                          {person.first_name} {person.last_name} - {person.party}
-                        </Typography>
+                        <ListItemText>
+                          <Typography variant='h4'>{person.first_name} {person.last_name}</Typography> {person.party === 'D'?'Democratic':'Republican'} Senator, {person.state}  <br />
+                        </ListItemText>
                       </ListItem>
                     </Paper>
                   ))}
@@ -200,10 +202,7 @@ class WelcomePage extends Component {
                           <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
                         </div>
                         <ListItemText>
-                          <Typography variant='h6'>
-                            District: {person.district} <br />
-                            {person.first_name} {person.last_name} - {person.party}
-                          </Typography>
+                            <Typography variant='h4'>{person.first_name} {person.last_name}</Typography> {person.party === 'D'?'Democratic':'Republican'} House Member, {person.state}  <br />
                         </ListItemText>
                       </ListItem>
                     </Paper>
@@ -216,6 +215,32 @@ class WelcomePage extends Component {
           <Typography variant="body1"></Typography>
         }
         </Paper>
+        {this.props.user.id?
+          <Paper className={classes.paperHolder}>
+            <Typography variant='h4'>Congressional Statements Involving {this.props.statements.query}</Typography>
+            <List>
+              {this.props.statements.results !== undefined ?
+              this.props.statements.results.map((statement, index) => (
+                <ListItem button key={index}>
+                    <div onClick={()=>this.handleMemberClick(statement.member_id)} style={placeholder}>
+                      <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${statement.member_id}.jpg`} />
+                    </div>
+                  <a style={{ textDecoration: 'none' }} href={statement.url}>
+                    <ListItemText>
+                      <Typography variant='h6'>{statement.name}</Typography> {statement.party === 'D'?'Democratic':'Republican'} {statement.chamber === 'Senate'?'Senator':'House Member'}, {statement.state}  <br />
+                      {statement.date} <br />
+                      {statement.title}
+                    </ListItemText>
+                </a>
+                  </ListItem>
+              ))
+              : <div/>}
+            </List>
+          </Paper>
+        :
+        <Typography variant="body1"></Typography>
+        }
+
       </div>
     );
   }
@@ -234,6 +259,7 @@ const mapStateToProps = state => ({
   senate: state.senate,
   house: state.house,
   classes: PropTypes.object.isRequired,
+  statements: state.statements.statementSearch,
 });
 
 export default connect(mapStateToProps)(withStyles(styles)(WelcomePage));

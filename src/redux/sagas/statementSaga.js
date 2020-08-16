@@ -30,7 +30,17 @@ function* getMemberStatementsSaga(action){
     yield put({ type: 'SET_MEMBER_STATEMENTS', payload: response.data.results});
     console.log('putting this in the member statements reducer:', response.data.results)
   } catch (error) {
-      console.log('error with member get request', error);
+      console.log('error with member statements get request', error);
+  }
+}
+
+function* searchStatementsSaga(action){
+  try {
+    const response = yield axios.get('/api/statements/search/' + action.payload);
+    yield put({ type: 'SET_STATEMENT_SEARCH', payload: response.data});
+    console.log('putting this in the statement search reducer:', response.data)
+  } catch (error) {
+      console.log('error with statement search request', error);
   }
 }
 
@@ -38,6 +48,7 @@ function* getMemberStatementsSaga(action){
 function* statementSaga() {
   yield takeLatest('GET_RECENT_STATEMENTS', getStatementsSaga);
   yield takeLatest('GET_MEMBER_STATEMENTS', getMemberStatementsSaga);
+  yield takeLatest('SEARCH_STATEMENTS', searchStatementsSaga);
 }
 
 export default statementSaga;
