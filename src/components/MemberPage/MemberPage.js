@@ -165,7 +165,10 @@ class MemberPage extends Component {
               <Typography variant="body2">Office: {member.roles[0].office}</Typography><br />
             </Grid>
             <Grid className={classes.leftAlign} item xs={12} md={8}>
-              <Typography variant="h4" style={{paddingLeft:'10px'}}>{member.first_name} {member.last_name} - {member.roles[0].party}</Typography>
+              <Grid container item justify="space-between">
+                <Typography variant="h4" style={{paddingLeft:'10px'}}>{member.first_name} {member.last_name} - {member.roles[0].party}</Typography>
+                <BookmarkButton />
+              </Grid>
               <Typography variant="h6" style={{paddingLeft:'10px'}}><a href={member.url}>{member.url}</a></Typography>
               <Typography variant="body1">{this.props.bio.extract}</Typography> <br />
             </Grid>
@@ -253,7 +256,7 @@ class MemberPage extends Component {
         </List>
       </Paper>
         {/* {JSON.stringify(this.props.member.roles[0].committees)} */}
-        <BookmarkButton />
+        
         
       </>
     )

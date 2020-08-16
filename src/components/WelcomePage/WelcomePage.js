@@ -151,6 +151,8 @@ class WelcomePage extends Component {
                   id="standard-error-helper-text"
                   label="Zip Code"
                   value={this.state.zip}
+                  variant="outlined"
+                  style={{marginBottom: 10}}
                   // helperText="Incorrect entry."
                 />
                 {/* <label for="zip">Zip Code:</label><br />

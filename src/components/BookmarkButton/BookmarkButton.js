@@ -38,16 +38,6 @@ class ToggleButtons extends React.Component {
   }
   
 
-  // componenetDidUpdate(prevProps) {
-  //   if (prevProps == this.props) {
-  //     console.log('DIFFERENT!')
-  //     this.setState({
-  //       userId: this.props.user.id,
-  //       bookmarks: this.props.bookmarks
-  //     });
-  //   }
-  // }
-
   handleAddBookmark = (event, bookmarked) => {
     this.setState({ bookmarked });
     this.props.dispatch({type:'ADD_BOOKMARK', payload: [this.props.location.pathname, this.props.user.id]});
@@ -65,7 +55,7 @@ class ToggleButtons extends React.Component {
 
     return (
         <>
-          <div className={classes.toggleContainer}>
+
             <ToggleButtonGroup value={bookmarked} exclusive >
               {this.state.bookmarked ? 
               <ToggleButton selected={true} value={false} onClick={this.handleRemoveBookmark}>
@@ -76,7 +66,7 @@ class ToggleButtons extends React.Component {
                 <StarBorderIcon />
               </ToggleButton>}
             </ToggleButtonGroup>
-          </div>
+
           {/* {JSON.stringify(this.props.bookmarks)}
           {JSON.stringify(this.state)} */}
           {/* <Typography variant="caption" gutterBottom>
