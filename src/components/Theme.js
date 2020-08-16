@@ -33,6 +33,7 @@ const theme = createMuiTheme({
     MuiPaper: {
       root: {
         backgroundColor: '#fbf8f1',
+
       },
     },
     MuiButton: {
@@ -57,7 +58,8 @@ const theme = createMuiTheme({
         color: '#1c3f73',
       },
       body1: {
-        fontFamily: 'Oxygen'
+        fontFamily: 'Oxygen',
+        padding: 10
       },
       body2: {
         fontFamily: 'Oxygen'
@@ -67,13 +69,17 @@ const theme = createMuiTheme({
       button: {
         border: '1px solid #60563a',
         borderRadius: 10,
-        backgroundColor: '#fbf8f1'
+        backgroundColor: '#fbf8f1',
+        "&:hover": {
+          backgroundColor: "#f9f2d6dd !important"
+        }
       }
     },
     MuiGrid: {
       root: {
         textAlign: 'center',
-        margin: 'auto'
+        margin: 'auto',
+        padding: '5px'
       }
     }
   }

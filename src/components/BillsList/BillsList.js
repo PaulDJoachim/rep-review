@@ -5,7 +5,8 @@ import { sortBy } from 'lodash';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 
 const listStyle = {
@@ -14,7 +15,13 @@ const listStyle = {
   borderRadius: '10px',
 }
 
-
+const paperHolder = {
+  marginTop: '40px',
+  padding: 15,
+  textAlign: 'center',
+  backgroundColor: '#ead7aa',
+  border: '1px solid #60563a'
+}
 
 class BillsList extends Component {
 
@@ -31,19 +38,21 @@ class BillsList extends Component {
     if (this.props.bills === undefined) return null;
     return(
       <>
-        <h2>Recent Bills</h2>
-        {/* {JSON.stringify(this.props.bills)} */}
-        <List>
-          {this.props.bills.map((bill, index) => (
-            <ListItem button key={index} onClick={()=>this.handleBillClick(bill.bill_slug)}>
-              <ListItemText>
-                {bill.number} <br />
-                {bill.title} <br />
-                Last Update: {bill.latest_major_action_date}
-              </ListItemText>
-            </ListItem>
-          ))}
-        </List>
+        <Paper style={paperHolder}>
+          <Typography variant='h4'>Recent Bills</Typography>
+          {/* {JSON.stringify(this.props.bills)} */}
+          <List>
+            {this.props.bills.map((bill, index) => (
+              <ListItem button key={index} onClick={()=>this.handleBillClick(bill.bill_slug)}>
+                <ListItemText>
+                  {bill.number} <br />
+                  {bill.title} <br />
+                  Last Update: {bill.latest_major_action_date}
+                </ListItemText>
+              </ListItem>
+            ))}
+          </List>
+        </Paper>
       </>
     )
   } 

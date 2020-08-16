@@ -38,9 +38,9 @@ const styles = theme => ({
     display: 'flex',
   },
   paper: {
-    padding: theme.spacing.unit * 2,
+    padding: 10,
     textAlign: 'left',
-    color: theme.palette.text.secondary,
+    border: '1px solid #60563a'
   },
   listPaper: {
     padding: 0,
@@ -56,12 +56,31 @@ const styles = theme => ({
   pic: {
     minWidth: '225px',
     marginTop: '20px',
-    marginBottom: '20px'
+    marginBottom: '20px',
+    textAlign: 'left',
   },
   spacer: {
     marginTop: '20px',
   },
+  leftAlign: {
+    textAlign: 'left',
+  },
+  paperHolder: {
+    marginTop: '20px',
+    padding: 15,
+    textAlign: 'left',
+    backgroundColor: '#ead7aa',
+    border: '1px solid #60563a'
+  },
+  hover: {
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: 'white'
+   }
+  }
 });
+
+
 
 class MemberPage extends Component {
 
@@ -123,6 +142,8 @@ class MemberPage extends Component {
     this.setState(state => ({ collapseCommittee: !state.collapseCommittee }));
   };
 
+
+
   render() {
 
     const { classes } = this.props;
@@ -131,6 +152,7 @@ class MemberPage extends Component {
     if (member.roles === undefined) return null;
     return(
       <>
+      <Paper className={classes.paperHolder}>
         <div className={classes.spacer} />
         <Paper className={classes.paper}>
           <Grid container>
@@ -138,20 +160,22 @@ class MemberPage extends Component {
               <div style={placeholder}>
                 <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${member.id}.jpg`} />
               </div>
+              <Typography variant="h5">Contact Information</Typography>
+              <Typography variant="body2">Phone: {member.roles[0].phone}</Typography>
+              <Typography variant="body2">Office: {member.roles[0].office}</Typography><br />
             </Grid>
-            <Grid item xs={12} md={9}>
-              <Typography variant="h3">{member.first_name} {member.last_name} - {member.roles[0].party}</Typography>
+            <Grid className={classes.leftAlign} item xs={12} md={8}>
+              <Typography variant="h4" style={{paddingLeft:'10px'}}>{member.first_name} {member.last_name} - {member.roles[0].party}</Typography>
+              <Typography variant="h6" style={{paddingLeft:'10px'}}><a href={member.url}>{member.url}</a></Typography>
               <Typography variant="body1">{this.props.bio.extract}</Typography> <br />
             </Grid>
           </Grid>
         </Paper>
-        <Paper className={classes.paper}>
-        <Typography variant="h5">Contact Information</Typography>
-        <Typography variant="h6">Website: <a href={member.url}>{member.url}</a></Typography>
-        <Typography variant="h6">Phone: {member.roles[0].phone}</Typography>
-        <Typography variant="h6">Office: {member.roles[0].office}</Typography><br />
-        </Paper>
-        <Typography variant="h5" onClick={this.handleStatementCollapse}>Recent Statements:</Typography>
+      </Paper>
+      <Paper className={classes.paperHolder}>
+        <ListItem button onClick={this.handleStatementCollapse}>
+          <Typography variant="h5">Recent Statements:</Typography>
+        </ListItem>
         <List>
           <div className={classes.container}>
             <Collapse in={this.state.collapseStatement}>
@@ -168,7 +192,11 @@ class MemberPage extends Component {
             </Collapse>
           </div>
         </List>
-        <Typography variant="h5" onClick={this.handleBillCollapse}>Recent Bills Introduced:</Typography>
+      </Paper>
+      <Paper className={classes.paperHolder}>
+        <ListItem button onClick={this.handleBillCollapse}>
+          <Typography variant="h5">Recent Bills Introduced:</Typography>
+        </ListItem>
         <List>
           <div className={classes.container}>
             <Collapse in={this.state.collapseBill}>
@@ -184,7 +212,11 @@ class MemberPage extends Component {
             </Collapse>
           </div>
         </List>
-        <Typography variant="h5" onClick={this.handleVoteCollapse}>Recent Voting History:</Typography>
+      </Paper>
+      <Paper className={classes.paperHolder}>
+        <ListItem onClick={this.handleVoteCollapse} button>
+          <Typography variant="h5">Recent Voting History:</Typography>
+        </ListItem>
         <List>
           <div className={classes.container}>
             <Collapse in={this.state.collapseVote}>
@@ -201,7 +233,11 @@ class MemberPage extends Component {
             </Collapse>
           </div>
         </List>
-        <Typography variant="h5" onClick={this.handleCommitteeCollapse}>Committes</Typography>
+      </Paper>
+      <Paper className={classes.paperHolder}>
+        <ListItem onClick={this.handleCommitteeCollapse} button>
+          <Typography variant="h5" >Committes</Typography>
+        </ListItem>
         <List>
           <div className={classes.container}>
             <Collapse in={this.state.collapseCommittee}>
@@ -215,8 +251,10 @@ class MemberPage extends Component {
             </Collapse>
           </div>
         </List>
+      </Paper>
         {/* {JSON.stringify(this.props.member.roles[0].committees)} */}
         <BookmarkButton />
+        
       </>
     )
   } 
