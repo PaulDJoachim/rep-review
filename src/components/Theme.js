@@ -67,6 +67,7 @@ const theme = createMuiTheme({
       button: {
         border: '1px solid #60563a',
         borderRadius: 10,
+        backgroundColor: '#fbf8f1'
       }
     },
     MuiGrid: {
