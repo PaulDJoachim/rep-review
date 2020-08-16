@@ -89,8 +89,9 @@ class ResponsiveDrawer extends React.Component {
         <Divider />
         <List>
           {['News', 'Search', 'Bills', 'Votes', 'Committees', 'Bookmarks'].map((text, index) => (
-            <ListItem button key={text} onClick={this.handleLink}>
-                <ListItemText primary={text}/>
+            <ListItem key={text} >
+                <Button variant="contained" onClick={this.handleLink}>{text}</Button>
+                
             </ListItem>
             
           ))}
@@ -112,15 +113,16 @@ class ResponsiveDrawer extends React.Component {
               <MenuIcon />
             </IconButton>
             <Grid container justify="space-between">
-              <Typography variant="h6" color="inherit" noWrap>
+              <p></p>
+              <Typography variant="h3" noWrap>
                 Rep-Review
               </Typography>
               {/* If the user is logged in, show a greeting and the log out button
                 Otherwise show the log in button. */}
               {this.props.user.id ? 
                 <Grid item>
-                <p>Hello {this.props.user.username}</p>
-                <p><Button onClick={() => this.props.dispatch({ type: 'LOGOUT' })} variant="contained" color="secondary">Log Out</Button> </p>
+                <Typography variant="h6">Hello {this.props.user.username}</Typography>
+                <p><Typography variant="h6" style={{cursor:'pointer'}} onClick={() => this.props.dispatch({ type: 'LOGOUT' })}>Log Out</Typography> </p>
                 </ Grid>
                 :<Modal />}
             </Grid>

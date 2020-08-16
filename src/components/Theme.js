@@ -13,16 +13,66 @@ const theme = createMuiTheme({
     }
   },
   typography: {
-    fontFamily: 'Comic Sans MS'
+    fontFamily: 'Oswald'
   },
   shape: {
     borderRadius: 10
   },
   spacing: 5,
   overrides: {
-    MuiPaper: {
+    MuiDrawer: {
+      paper: {
+        backgroundColor: '#dad2bb',
+      }
+    },
+    MuiToolbar: {
       root: {
         backgroundColor: '#dad2bb'
+      }
+    },
+    MuiPaper: {
+      root: {
+        backgroundColor: '#fbf8f1',
+      },
+    },
+    MuiButton: {
+      root: {
+        backgroundColor: '#fbf8f1',
+        width: 180
+      },
+      contained: {
+        backgroundColor: '#fbf8f1',
+      },
+      label: {
+        color: '#60563a',
+      },
+    },
+    MuiTypography: {
+      root: {
+        color: '#60563a',
+      },
+      h3: {
+        fontFamily: 'Cinzel Decorative',
+        fontWeight: 900,
+        color: '#1c3f73',
+      },
+      body1: {
+        fontFamily: 'Oxygen'
+      },
+      body2: {
+        fontFamily: 'Oxygen'
+      },
+    },
+    MuiListItem: {
+      button: {
+        border: '1px solid #60563a',
+        borderRadius: 10,
+      }
+    },
+    MuiGrid: {
+      root: {
+        textAlign: 'center',
+        margin: 'auto'
       }
     }
   }

@@ -39,10 +39,19 @@ const styles = theme => ({
     minWidth: '350px',
   },
   paper: {
-    marginTop: '40px',
+    marginTop: theme.spacing.unit * 2,
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
     color: theme.palette.text.secondary,
+    border: '1px solid #60563a'
+  },
+  paperHolder: {
+    marginTop: '40px',
+    padding: theme.spacing.unit * 5,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    backgroundColor: '#ead7aa',
+    border: '1px solid #60563a'
   },
   listPaper: {
     padding: 0,
@@ -118,6 +127,7 @@ class WelcomePage extends Component {
     const yourSenateRep = this.props.senate.filter(person => person.state === this.props.district.state);
     return (
       <div>
+        <Paper className={classes.paperHolder}>
         <Paper className={classes.paper}>
           <Typography variant="h4">Welcome To Rep-Review!</Typography>
           <Typography variant="body1">Here you can find information about all 535 members of congress as well as congressional committees, current bills, and voting records.</Typography>
@@ -201,6 +211,7 @@ class WelcomePage extends Component {
         :
           <Typography variant="body1"></Typography>
         }
+        </Paper>
       </div>
     );
   }
