@@ -8,8 +8,11 @@ import background from './generic-avatar.png';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-
-
+import Grid from '@material-ui/core/Grid';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 const listStyle = {
   height: '100px',
@@ -25,8 +28,38 @@ const placeholder = {
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   borderRadius: '10px',
+  marginRight: '10px',
 }
 
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  List: {
+    minWidth: '350px',
+  },
+  paper: {
+    marginTop: theme.spacing.unit * 2,
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    border: '1px solid #60563a'
+  },
+  paperHolder: {
+    marginTop: '40px',
+    padding: theme.spacing.unit * 5,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    backgroundColor: '#ead7aa',
+    border: '1px solid #60563a'
+  },
+  listPaper: {
+    padding: 0,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    margin: '1px',
+  },
+});
 
 
 class WelcomePage extends Component {
@@ -69,13 +102,19 @@ class WelcomePage extends Component {
       if (this.props.user.zip.length === 5){
         this.setState({haveZip: true})
     }}
-  }
-  componentDidUpdate(prevProps) {
-    if (this.props.user.zip !== prevProps.user.zip) {
+    if (this.props.user.zip !== undefined && this.props.user.zip !== null){
       if (this.props.user.zip.length === 5){
         this.setState({haveZip: true})
         this.props.dispatch({type: 'GET_DISTRICT', payload: this.props.user.zip})
-    }} 
+    }}
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.user.zip !== undefined && this.props.user.zip !== null){
+      if (this.props.user.zip !== prevProps.user.zip) {
+        if (this.props.user.zip.length === 5){
+          this.setState({haveZip: true})
+          this.props.dispatch({type: 'GET_DISTRICT', payload: this.props.user.zip})
+    }}}
   }
 
   handleMemberClick = (id) => {
@@ -83,78 +122,104 @@ class WelcomePage extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     const yourHouseRep = this.props.house.filter(person => person.state === this.props.district.state && Number(person.district) === Number(this.props.district.district));
     const yourSenateRep = this.props.senate.filter(person => person.state === this.props.district.state);
     return (
       <div>
-        <h2>Welcome To Rep-Review!</h2>
-        <p>Here you can find information about all 535 members of congress as well as congressional committees, current bills, and voting records.</p>
-        <p>Use the sidebar to browse categories, or log in to get information about your state representatives.</p>
-       {/* <p>{JSON.stringify(this.props.house)}</p> */}
+        <Paper className={classes.paperHolder}>
+        <Paper className={classes.paper}>
+          <Typography variant="h4">Welcome To Rep-Review!</Typography>
+          <Typography variant="body1">Here you can find information about all 535 members of congress as well as congressional committees, current bills, and voting records.</Typography>
+          
+          <Typography variant="body1">Use the sidebar to browse categories, or log in to get information about your state representatives.</Typography>
+        </Paper>
+       {/* <Typography variant="body1">{JSON.stringify(this.props.house)}</Typography> */}
         <div>
           {this.props.user.id ? 
             <>
-            <FormControl> 
-              <h4>Enter your zip code for the latest information from your house and senate representatives.</h4>
-              <p>Your Zip Code is {this.props.user.zip}</p>
-              <TextField
-                onChange={this.handleZipChange}
-                error={this.state.invalidZip}
-                id="standard-error-helper-text"
-                label="Zip Code"
-                value={this.state.zip}
-                // helperText="Incorrect entry."
-              />
-              {/* <label for="zip">Zip Code:</label><br />
-              <input type="text" id='zip'></input>
-              <input type="submit" value="Submit"></input> */}
-            <Button onClick={this.handleZipSubmit} variant="contained" color="primary">
-              Submit
-            </Button>
-            </FormControl>
+            <Paper className={classes.paper}>
+              <FormControl>
+                {!this.props.user.zip ? 
+                  <Typography variant="h6">Enter your zip code for the latest information from your house and senate representatives.</Typography>
+                :
+                  <Typography variant="body1">Your Zip Code is {this.props.user.zip}</Typography>
+                }
+                <TextField
+                  onChange={this.handleZipChange}
+                  error={this.state.invalidZip}
+                  id="standard-error-helper-text"
+                  label="Zip Code"
+                  value={this.state.zip}
+                  variant="outlined"
+                  style={{marginBottom: 10}}
+                  // helperText="Incorrect entry."
+                />
+                {/* <label for="zip">Zip Code:</label><br />
+                <input type="text" id='zip'></input>
+                <input type="submit" value="Submit"></input> */}
+              <Button onClick={this.handleZipSubmit} variant="contained" color="primary">
+                Submit
+              </Button>
+              </FormControl>
+            </Paper>
             </>
-            : 
-            <h3> Log in to get recent news about your state and representatives. </h3>
+            :
+            <Paper className={classes.paper}> 
+              <Typography variant="h5"> Log in to get recent news about your state and representatives. </Typography>
+            </Paper>
           }
         </div>
-        {this.state.haveZip ?
-          <>
-            <h2>Your Senators:</h2>
-            <List>
-              {yourSenateRep.map((person, index) => (
-                <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id)}>
-                  <div style={placeholder}>
-                    <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
-                  </div>
-                  <ListItemText>
-                    {person.first_name} {person.last_name} - {person.party}
-                  </ListItemText>
-                </ListItem>
-              ))}
-            </List>
-              <h2>Your Representative for District {this.props.district.district}:</h2>
-              {JSON.stringify(yourHouseRep)}
-              <List>
-                {yourHouseRep.map((person, index) => (
-                  <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id)}>
-                    <div style={placeholder}>
-                      <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
-                    </div>
-                    <ListItemText>
-                      District: {person.district} <br />
-                      {person.first_name} {person.last_name} - {person.party}
-                    </ListItemText>
-                  </ListItem>
-                ))}
-              </List>
-          </>
+        {this.props.user.zip ?
+          <div className={classes.root}>
+            <Grid container xs={12}>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="h6">Your Senators:</Typography>
+                <List className={classes.List}>
+                  {yourSenateRep.map((person, index) => (
+                    <Paper className={classes.listPaper}>
+                      <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id)}>
+                        <div style={placeholder}>
+                          <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
+                        </div>
+                        <Typography variant="h6">
+                          {person.first_name} {person.last_name} - {person.party}
+                        </Typography>
+                      </ListItem>
+                    </Paper>
+                  ))}
+                </List>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="h6">Your Representative for District {this.props.district.district}:</Typography>
+                <List className={classes.List}>
+                  {yourHouseRep.map((person, index) => (
+                    <Paper className={classes.listPaper}>
+                      <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id)}>
+                        <div style={placeholder}>
+                          <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
+                        </div>
+                        <ListItemText>
+                          District: {person.district} <br />
+                          {person.first_name} {person.last_name} - {person.party}
+                        </ListItemText>
+                      </ListItem>
+                    </Paper>
+                  ))}
+                </List>
+              </Grid>
+            </Grid>
+          </div>
         :
-          <p>nothing</p>
+          <Typography variant="body1"></Typography>
         }
+        </Paper>
       </div>
     );
   }
 }
+
+
 
 // Instead of taking everything from state, we just want the error messages.
 // if you wanted you could write this code like this:
@@ -166,7 +231,8 @@ const mapStateToProps = state => ({
   district: state.district,
   senate: state.senate,
   house: state.house,
+  classes: PropTypes.object.isRequired,
 });
 
-export default connect(mapStateToProps)(WelcomePage);
+export default connect(mapStateToProps)(withStyles(styles)(WelcomePage));
 

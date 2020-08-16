@@ -6,7 +6,8 @@ import background from './generic-avatar.png';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 
 
 const listStyle = {
@@ -23,9 +24,16 @@ const placeholder = {
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   borderRadius: '10px',
+  marginRight: '15px'
 }
 
-
+const paperHolder = {
+  marginTop: '40px',
+  padding: 15,
+  textAlign: 'center',
+  backgroundColor: '#ead7aa',
+  border: '1px solid #60563a'
+}
 
 class StatePage extends Component {
 
@@ -44,34 +52,36 @@ class StatePage extends Component {
 
     return(
       <>
-        <h1>{stateAbbrToName[this.props.match.params.stateName]}</h1>
-        <h2>Senate Members</h2>
+      <Paper style={paperHolder}>
+        <Typography variant="h2">{stateAbbrToName[this.props.match.params.stateName]}</Typography>
+        <Typography variant="h5">Senate Members</Typography>
         <List>
           {thisStateSenate.map((person, index) => (
             <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id)}>
               <div style={placeholder}>
                 <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
               </div>
-              <ListItemText>
+              <Typography variant="h5">
                 {person.first_name} {person.last_name} - {person.party}
-              </ListItemText>
+              </Typography>
             </ListItem>
           ))}
         </List>
-        <h2>House Members</h2>
+        <Typography variant="h5">House Members</Typography>
         <List>
           {newArr.map((person, index) => (
             <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id)}>
               <div style={placeholder}>
                 <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
               </div>
-              <ListItemText>
-                District: {person.district} <br />
+              <Typography variant="h5">
+                District {person.district} <br />
                 {person.first_name} {person.last_name} - {person.party}
-              </ListItemText>
+              </Typography>
             </ListItem>
           ))}
         </List>
+      </Paper>
       </>
     )
   } 

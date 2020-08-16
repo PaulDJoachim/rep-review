@@ -5,6 +5,8 @@ import background from './generic-avatar.png';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 
 
 const listStyle = {
@@ -21,6 +23,20 @@ const placeholder = {
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   borderRadius: '10px',
+}
+
+const paperHolder = {
+  marginTop: '40px',
+  padding: 15,
+  textAlign: 'left',
+  backgroundColor: '#ead7aa',
+  border: '1px solid #60563a'
+}
+
+const paper = {
+  padding: 10,
+  textAlign: 'left',
+  border: '1px solid #60563a'
 }
 
 class CommitteePage extends Component {
@@ -50,24 +66,28 @@ class CommitteePage extends Component {
     if (committee.current_members === undefined) return null;
     return(
       <>
-        <h1>{committee.name}</h1>
-        <h2>Website: <a href={committee.url}>{committee.url}</a></h2>
-        <p>{info.extract}</p>
-        <h2>Members</h2>
-        <List>
-          {this.props.committee.current_members.map((person, index) => (
-            <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id)}>
-              <div style={placeholder}>
-                <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
-              </div>
-              <ListItemText>
-                {person.name} - {person.party} <br />
-                {stateAbbrToName[person.state]}<br />
-                {person.note}
-              </ListItemText>
-            </ListItem>
-          ))}
-        </List>
+        <Paper style={paperHolder}>
+          <Typography variant='h4'>{committee.name}</Typography>
+          <Typography variant='h6'><a href={committee.url}>{committee.url}</a></Typography>
+          <Paper style={paper}>
+          <Typography variant='body1'>{info.extract}</Typography>
+          </Paper>
+          <Typography variant='h4'>Members</Typography>
+          <List>
+            {this.props.committee.current_members.map((person, index) => (
+              <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id)}>
+                <div style={placeholder}>
+                  <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
+                </div>
+                <Typography variant='body1'>
+                  {person.name} - {person.party} <br />
+                  {stateAbbrToName[person.state]}<br />
+                  {person.note}
+                </Typography>
+              </ListItem>
+            ))}
+          </List>
+        </Paper>
       </>
     )
   } 

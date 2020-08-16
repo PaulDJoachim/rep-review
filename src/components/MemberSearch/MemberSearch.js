@@ -5,8 +5,16 @@ import {Link, Route, withRouter} from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 
-
+const paperHolder = {
+  marginTop: '40px',
+  padding: 15,
+  textAlign: 'center',
+  backgroundColor: '#ead7aa',
+  border: '1px solid #60563a'
+}
 
 
 class MemberSearch extends Component {
@@ -22,16 +30,18 @@ class MemberSearch extends Component {
     let states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
     return (
       <div>
-        <h2>This is the Member Search Page!</h2>
-        <List>
-        {states.map((state, id)=>(
-          <ListItem button key={id} onClick={this.handleSelectState}>
-            <ListItemText>
-              {state}
-            </ListItemText>
-          </ListItem>
-        ))}
-        </List>
+        <Paper style={paperHolder}>
+        <Typography variant="h4">Select a state to view representatives</Typography>
+          <List>
+          {states.map((state, id)=>(
+            <ListItem button key={id} onClick={this.handleSelectState}>
+              <Typography variant="h6">
+                {state}
+              </Typography>
+            </ListItem>
+          ))}
+          </List>
+        </Paper>
       </div>
     );
   }

@@ -29,6 +29,9 @@ import VotesList from '../VotesList/VotesList';
 import VotePage from '../VotePage/VotePage';
 import StatementList from '../StatementList/StatementList';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
+import theme from '../Theme'
+import {ThemeProvider} from '@material-ui/core/styles'
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 import './App.css';
 import Bookmarks from '../Bookmarks/Bookmarks';
@@ -62,6 +65,8 @@ class App extends Component {
       <Router>
         <ScrollToTop>
           <div>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
             {/* <Nav /> */}
             {/* Drawer replaces the default Nav. All children of the Drawer element
             will be added to the "Main" div within the Drawer component. */}
@@ -126,6 +131,7 @@ class App extends Component {
                 <Route render={() => <h1>404</h1>} />
               </Switch>
             </Drawer>
+            </ThemeProvider>
             <Footer />
           </div>
         </ScrollToTop>
