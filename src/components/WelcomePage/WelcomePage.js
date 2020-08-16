@@ -98,7 +98,7 @@ class WelcomePage extends Component {
   }
 
   componentDidMount() {
-    if (this.props.user.zip !== undefined){
+    if (this.props.user.zip !== undefined && this.props.user.zip !== null){
       if (this.props.user.zip.length === 5){
         this.setState({haveZip: true})
     }}
@@ -173,7 +173,7 @@ class WelcomePage extends Component {
         {this.props.user.zip ?
           <div className={classes.root}>
             <Grid container xs={12}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} md={6}>
                 <Typography variant="h6">Your Senators:</Typography>
                 <List className={classes.List}>
                   {yourSenateRep.map((person, index) => (
@@ -190,7 +190,7 @@ class WelcomePage extends Component {
                   ))}
                 </List>
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} md={6}>
                 <Typography variant="h6">Your Representative for District {this.props.district.district}:</Typography>
                 <List className={classes.List}>
                   {yourHouseRep.map((person, index) => (
@@ -200,8 +200,10 @@ class WelcomePage extends Component {
                           <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
                         </div>
                         <ListItemText>
-                          District: {person.district} <br />
-                          {person.first_name} {person.last_name} - {person.party}
+                          <Typography variant='h6'>
+                            District: {person.district} <br />
+                            {person.first_name} {person.last_name} - {person.party}
+                          </Typography>
                         </ListItemText>
                       </ListItem>
                     </Paper>

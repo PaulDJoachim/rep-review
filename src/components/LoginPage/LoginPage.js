@@ -1,5 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+
+
+const paper ={
+  padding: 10,
+  textAlign: 'center',
+  border: '1px solid #60563a'
+}
+
+const loginButton = {
+  width: 100,
+  margin: 20,
+}
+
 
 class LoginPage extends Component {
   state = {
@@ -31,48 +49,48 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <div>
+        <Paper style={paper}>
         {this.props.errors.loginMessage && (
-          <h2
+          <Typography variant='h4'
             className="alert"
             role="alert"
           >
             {this.props.errors.loginMessage}
-          </h2>
+          </Typography>
         )}
-        <form onSubmit={this.login}>
-          <h1>Login</h1>
+        <FormControl>
+          <Typography variant='h4'>Login</Typography>
           <div>
-            <label htmlFor="username">
-              Username:
-              <input
+              <TextField
+                label="username"
                 type="text"
                 name="username"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
               />
-            </label>
           </div>
           <div>
-            <label htmlFor="password">
-              Password:
-              <input
+              <TextField
+                label="password"
                 type="password"
                 name="password"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
               />
-            </label>
           </div>
           <div>
-            <input
-              className="log-in"
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.login}
+              style={loginButton}
               type="submit"
               name="submit"
-              value="Log In"
-            />
+              value="Log In">
+              Log In
+            </Button>
           </div>
-        </form>
+        </FormControl>
         <center>
           <button
             type="button"
@@ -82,7 +100,7 @@ class LoginPage extends Component {
             Register
           </button>
         </center>
-      </div>
+        </Paper>
     );
   }
 }

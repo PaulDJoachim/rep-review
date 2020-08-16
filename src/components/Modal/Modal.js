@@ -19,10 +19,12 @@ const styles = theme => ({
   paper: {
     position: 'absolute',
     width: theme.spacing.unit * 50,
-    backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4,
     outline: 'none',
+    backgroundColor: '#ead7aa',
+    border: '1px solid #60563a',
+    borderRadius: 10
   },
 });
 
