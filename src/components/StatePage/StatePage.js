@@ -64,9 +64,9 @@ class StatePage extends Component {
               <div style={placeholder}>
                 <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
               </div>
-              <Typography variant="h5">
-                {person.first_name} {person.last_name} - {person.party}
-              </Typography>
+              <ListItemText>
+                <Typography variant='h4'>{person.first_name} {person.last_name}</Typography> {person.party === 'D'?'Democratic':person.party==='R'?'Republican':'Libertarian'} {person.title}  <br />
+              </ListItemText>
             </ListItem>
           ))}
         </List>
@@ -77,10 +77,9 @@ class StatePage extends Component {
               <div style={placeholder}>
                 <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
               </div>
-              <Typography variant="h5">
-                District {person.district} <br />
-                {person.first_name} {person.last_name} - {person.party}
-              </Typography>
+              <ListItemText>
+                <Typography variant='h4'>{person.first_name} {person.last_name}</Typography> {person.party === 'D'?'Democratic':person.party==='R'?'Republican':'Libertarian'} {person.title}, District {person.district} <br />  <br />
+              </ListItemText>
             </ListItem>
           ))}
         </List>

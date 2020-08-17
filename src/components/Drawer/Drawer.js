@@ -20,6 +20,7 @@ import logo from './logo.png'
 import Modal from '../Modal/Modal'
 import { connect } from 'react-redux';
 
+
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -41,7 +42,7 @@ const styles = theme => ({
     },
   },
   menuButton: {
-    marginRight: 20,
+    // marginRight: 20,
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
@@ -114,17 +115,19 @@ class ResponsiveDrawer extends React.Component {
               <MenuIcon />
             </IconButton>
             <Grid container style={{alignItems:'center'}} justify="space-between">
-              <p></p>
+            <Hidden xsDown><p></p></Hidden>
               <Typography style={{cursor:'pointer'}} onClick={this.handleHome} variant="h3" noWrap>
                 Rep-Review
               </Typography>
               {/* If the user is logged in, show a greeting and the log out button
                 Otherwise show the log in button. */}
               {this.props.user.id ? 
+              <Hidden xsDown>
                 <Grid item spacing={0}>
                 <Typography variant="h6">Hello {this.props.user.username}!</Typography>
                 <Button variant="contained" style={{width:80}} onClick={() => this.props.dispatch({ type: 'LOGOUT' })}>Log Out</Button>
                 </ Grid>
+              </Hidden>
                 :<Modal />}
             </Grid>
           </Toolbar>

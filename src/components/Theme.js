@@ -39,7 +39,7 @@ const theme = createMuiTheme({
       root: {
         backgroundColor: '#fbf8f1',
         width: 180,
-        padding: 5
+        padding: 5,
       },
       contained: {
         backgroundColor: '#fbf8f1',
@@ -57,6 +57,7 @@ const theme = createMuiTheme({
         fontFamily: 'Cinzel Decorative',
         fontWeight: 900,
         color: '#1c3f73',
+        
       },
       body1: {
         fontFamily: 'Oxygen',
@@ -80,7 +81,7 @@ const theme = createMuiTheme({
       root: {
         textAlign: 'center',
         margin: 'auto',
-        padding: '5px'
+        padding: '5px',
       }
     },
   }
