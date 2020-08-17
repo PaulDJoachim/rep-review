@@ -112,17 +112,17 @@ class ResponsiveDrawer extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Grid container justify="space-between">
+            <Grid container style={{alignItems:'center'}} justify="space-between">
               <p></p>
-              <Typography variant="h3" noWrap>
+              <Typography onClick={this.handleHome} variant="h3" noWrap>
                 Rep-Review
               </Typography>
               {/* If the user is logged in, show a greeting and the log out button
                 Otherwise show the log in button. */}
               {this.props.user.id ? 
-                <Grid item>
-                <Typography variant="h6">Hello {this.props.user.username}</Typography>
-                <p><Typography variant="h6" style={{cursor:'pointer'}} onClick={() => this.props.dispatch({ type: 'LOGOUT' })}>Log Out</Typography> </p>
+                <Grid item spacing={0}>
+                <Typography variant="h6">Hello {this.props.user.username}!</Typography>
+                <Button variant="contained" style={{width:80}} onClick={() => this.props.dispatch({ type: 'LOGOUT' })}>Log Out</Button>
                 </ Grid>
                 :<Modal />}
             </Grid>

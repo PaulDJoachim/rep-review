@@ -4,8 +4,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import background from './generic-avatar.png';
-
-
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 const listStyle = {
   height: '100px',
@@ -23,7 +23,13 @@ const placeholder = {
   borderRadius: '10px',
 }
 
-
+const paperHolder = {
+  marginTop: '40px',
+  padding: 15,
+  textAlign: 'center',
+  backgroundColor: '#ead7aa',
+  border: '1px solid #60563a'
+}
 
 class Bookmarks extends Component {
 
@@ -68,10 +74,10 @@ class Bookmarks extends Component {
     })
 
 
-
     return(
       <>
-      <h1>{this.props.user.username}'s Bookmarks</h1>
+      <Paper style={paperHolder}>
+      <Typography variant='h4'>Your Bookmarks</Typography>
         <List>
           {memberArr.map((person, index) => (
             <ListItem button key={index} onClick={()=>this.handleMemberClick(person.id, person.first_name, person.last_name)}>
@@ -79,15 +85,12 @@ class Bookmarks extends Component {
                 <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
               </div>
               <ListItemText>
-                {person.first_name} {person.last_name}
+                {person.first_name} {person.last_name} - {person.party === 'D'?'Democratic':person.party ==='R'?'Republican':'Libertarian'}
               </ListItemText>
             </ListItem>
           ))}
         </List>
-
-
-      {/* {JSON.stringify(this.bookmarkArr)}
-      {JSON.stringify(memberArr)} */}
+      </Paper>
       </>
     )
   } 

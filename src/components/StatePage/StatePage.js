@@ -35,7 +35,10 @@ const paperHolder = {
   border: '1px solid #60563a'
 }
 
+
+
 class StatePage extends Component {
+
 
   handleMemberClick = (id) => {
     this.props.history.push('/Members/' + id)
@@ -51,7 +54,7 @@ class StatePage extends Component {
     });
 
     return(
-      <>
+      <> 
       <Paper style={paperHolder}>
         <Typography variant="h2">{stateAbbrToName[this.props.match.params.stateName]}</Typography>
         <Typography variant="h5">Senate Members</Typography>

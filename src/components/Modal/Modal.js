@@ -47,7 +47,7 @@ class SimpleModal extends React.Component {
     return (
       <div>
         {/* <Typography gutterBottom>Log In for the full experience!</Typography> */}
-        <Typography variant="h6" style={{cursor:'pointer'}} onClick={this.handleOpen}>Log In</Typography>
+        <Button variant="contained" style={{width:80}} onClick={this.handleOpen}>Log In</Button>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"

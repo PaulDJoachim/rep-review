@@ -73,20 +73,19 @@ class StatementList extends Component {
     return(
       <>
         <Paper style={paperHolder}>
-          <Typography variant='h4'>Search Statements</Typography>
+          <Typography variant='h4' style={{marginBottom:10}}>Search Statements</Typography>
           <Paper style={paper}>
-          <FormControl>
-            <TextField 
-              variant='outlined'
-              onChange={this.handleSearchChange}
-              label="Enter Search Terms"
-              value={this.state.search}
-            />
-            <Button onClick={this.handleSearch} style={{marginTop: 15}} variant="contained" color="primary">
-              Search
-            </Button>
-            
-          </FormControl>
+            <FormControl>
+              <TextField 
+                variant='outlined'
+                onChange={this.handleSearchChange}
+                label="Enter Search Terms"
+                value={this.state.search}
+              />
+              <Button onClick={this.handleSearch} style={{marginTop: 15}} variant="contained" color="primary">
+                Search
+              </Button>
+            </FormControl>
           </Paper>
           {this.state.hasSearched && this.props.search.results ?
           <>
@@ -98,12 +97,12 @@ class StatementList extends Component {
                       <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${statement.member_id}.jpg`} />
                     </div>
                   <a style={{ textDecoration: 'none' }} href={statement.url}>
-                  <ListItemText>
-                    {statement.name} - {statement.party === 'D'?'Democratic':'Republican'} {statement.chamber === 'Senate'?'Senator':'House Member'}, {statement.state}  <br />
-                    {statement.date} <br />
-                    {statement.title}
-                  </ListItemText>
-              </a>
+                    <ListItemText>
+                      {statement.name} - {statement.party === 'D'?'Democratic':statement.party ==='R'?'Republican':'Libertarian'} {statement.chamber === 'Senate'?'Senator':'House Member'}, {statement.state}  <br />
+                      {statement.date} <br />
+                      {statement.title}
+                    </ListItemText>
+                  </a>
                 </ListItem>
               ))}
             </List>
@@ -123,7 +122,7 @@ class StatementList extends Component {
                   </div>
                 <a style={{ textDecoration: 'none' }} href={statement.url}>
                   <ListItemText>
-                    {statement.name} - {statement.party === 'D'?'Democratic':'Republican'} {statement.chamber === 'Senate'?'Senator':'House Member'}, {statement.state}  <br />
+                    {statement.name} - {statement.party === 'D'?'Democratic':statement.party ==='R'?'Republican':'Libertarian'} {statement.chamber === 'Senate'?'Senator':'House Member'}, {statement.state}  <br />
                     {statement.date} <br />
                     {statement.title}
                   </ListItemText>

@@ -185,7 +185,7 @@ class WelcomePage extends Component {
                           <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
                         </div>
                         <ListItemText>
-                          <Typography variant='h4'>{person.first_name} {person.last_name}</Typography> {person.party === 'D'?'Democratic':'Republican'} Senator, {person.state}  <br />
+                          <Typography variant='h4'>{person.first_name} {person.last_name}</Typography> {person.party === 'D'?'Democratic':person.party==='R'?'Republican':'Libertarian'} Senator, {person.state}  <br />
                         </ListItemText>
                       </ListItem>
                     </Paper>
@@ -202,7 +202,7 @@ class WelcomePage extends Component {
                           <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
                         </div>
                         <ListItemText>
-                            <Typography variant='h4'>{person.first_name} {person.last_name}</Typography> {person.party === 'D'?'Democratic':'Republican'} House Member, {person.state}  <br />
+                            <Typography variant='h4'>{person.first_name} {person.last_name}</Typography> {person.party === 'D'?'Democratic':person.party==='R'?'Republican':'Libertarian'} House Member, {person.state}  <br />
                         </ListItemText>
                       </ListItem>
                     </Paper>
@@ -227,7 +227,7 @@ class WelcomePage extends Component {
                     </div>
                   <a style={{ textDecoration: 'none' }} href={statement.url}>
                     <ListItemText>
-                      <Typography variant='h6'>{statement.name}</Typography> {statement.party === 'D'?'Democratic':'Republican'} {statement.chamber === 'Senate'?'Senator':'House Member'}, {statement.state}  <br />
+                      <Typography variant='h6'>{statement.name}</Typography> {statement.party === 'D'?'Democratic':statement.party ==='R'?'Republican':'Libertarian'} {statement.chamber === 'Senate'?'Senator':'House Member'}, {statement.state}  <br />
                       {statement.date} <br />
                       {statement.title}
                     </ListItemText>

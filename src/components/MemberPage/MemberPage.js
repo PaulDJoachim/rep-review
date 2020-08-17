@@ -166,8 +166,8 @@ class MemberPage extends Component {
             </Grid>
             <Grid className={classes.leftAlign} item xs={12} md={8}>
               <Grid container item justify="space-between">
-                <Typography variant="h4" style={{paddingLeft:'10px'}}>{member.first_name} {member.last_name}
-                <Typography style={{textAlign: 'left'}} variant='h6'>{member.roles[0].party === 'D'?'Democratic':'Republican'} {member.roles[0].chamber==='House'?'House Member':'Senator'}</Typography></Typography>
+                <Typography variant="h4" style={{paddingLeft:'10px',textAlign:'left'}}>{member.first_name} {member.last_name}
+                <Typography style={{textAlign: 'left'}} variant='h6'>{member.roles[0].party === 'D'?'Democratic':member.roles[0].party ==='R'?'Republican':'Libertarian'} {member.roles[0].chamber==='House'?'House Member':'Senator'}</Typography></Typography>
                 <BookmarkButton />
               </Grid>
               <Typography variant="h6" style={{paddingLeft:'10px'}}><a href={member.url}>{member.url}</a></Typography>
