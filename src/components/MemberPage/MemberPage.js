@@ -178,7 +178,7 @@ class MemberPage extends Component {
       </Paper>
       <Paper className={classes.paperHolder}>
         <ListItem button onClick={this.handleStatementCollapse}>
-          <Typography variant="h5">Recent Statements:</Typography>
+          <Typography variant="h5">Recent Statements</Typography>
         </ListItem>
         <List>
           <div className={classes.container}>
@@ -199,7 +199,7 @@ class MemberPage extends Component {
       </Paper>
       <Paper className={classes.paperHolder}>
         <ListItem button onClick={this.handleBillCollapse}>
-          <Typography variant="h5">Recent Bills Introduced:</Typography>
+          <Typography variant="h5">Recent Bills Introduced</Typography>
         </ListItem>
         <List>
           <div className={classes.container}>
@@ -219,7 +219,7 @@ class MemberPage extends Component {
       </Paper>
       <Paper className={classes.paperHolder}>
         <ListItem onClick={this.handleVoteCollapse} button>
-          <Typography variant="h5">Recent Voting History:</Typography>
+          <Typography variant="h5">Recent Voting History</Typography>
         </ListItem>
         <List>
           <div className={classes.container}>
@@ -240,7 +240,7 @@ class MemberPage extends Component {
       </Paper>
       <Paper className={classes.paperHolder}>
         <ListItem onClick={this.handleCommitteeCollapse} button>
-          <Typography variant="h5" >Committes</Typography>
+          <Typography variant="h5">Committe Memberships</Typography>
         </ListItem>
         <List>
           <div className={classes.container}>
@@ -256,13 +256,9 @@ class MemberPage extends Component {
           </div>
         </List>
       </Paper>
-        {/* {JSON.stringify(this.props.member.roles[0].committees)} */}
-        
-        
       </>
     )
   } 
-
 }
 
 const mapStateToProps = state => ({

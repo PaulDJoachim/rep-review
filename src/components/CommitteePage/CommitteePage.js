@@ -80,8 +80,7 @@ class CommitteePage extends Component {
                   <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
                 </div>
                 <Typography variant='body1'>
-                  {person.name} - {person.party} <br />
-                  {stateAbbrToName[person.state]}<br />
+                <Typography variant='h4'>{person.name}</Typography>{person.party === 'D'?'Democratic':person.party==='R'?'Republican':'Libertarian'} {person.chamber ==='House'?'House Member':'Senator'}, {person.state}  <br />
                   {person.note}
                 </Typography>
               </ListItem>

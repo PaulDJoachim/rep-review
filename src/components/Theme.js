@@ -38,13 +38,15 @@ const theme = createMuiTheme({
     MuiButton: {
       root: {
         backgroundColor: '#fbf8f1',
-        width: 180
+        width: 180,
+        padding: 5
       },
       contained: {
         backgroundColor: '#fbf8f1',
       },
       label: {
         color: '#60563a',
+        fontSize: 16
       },
     },
     MuiTypography: {

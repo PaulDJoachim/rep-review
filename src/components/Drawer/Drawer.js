@@ -59,6 +59,7 @@ const styles = theme => ({
     height: 200,
     width: 150,
     marginLeft: 35,
+    cursor: 'pointer'
   },
 });
 
@@ -114,7 +115,7 @@ class ResponsiveDrawer extends React.Component {
             </IconButton>
             <Grid container style={{alignItems:'center'}} justify="space-between">
               <p></p>
-              <Typography onClick={this.handleHome} variant="h3" noWrap>
+              <Typography style={{cursor:'pointer'}} onClick={this.handleHome} variant="h3" noWrap>
                 Rep-Review
               </Typography>
               {/* If the user is logged in, show a greeting and the log out button
@@ -152,7 +153,7 @@ class ResponsiveDrawer extends React.Component {
               variant="permanent"
               open
             >
-              <img className={classes.logo} src={logo} alt="logo" onClick={this.handleHome}/>
+              <img className={classes.logo}  src={logo} alt="logo" onClick={this.handleHome}/>
               {drawer}
             </Drawer>
           </Hidden>
