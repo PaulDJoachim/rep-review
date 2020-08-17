@@ -85,7 +85,7 @@ class Bookmarks extends Component {
                 <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${person.id}.jpg`} />
               </div>
               <ListItemText>
-                {person.first_name} {person.last_name} - {person.party === 'D'?'Democratic':person.party ==='R'?'Republican':'Libertarian'}
+              <Typography variant='h4'>{person.first_name} {person.last_name}</Typography> {person.party === 'D'?'Democratic':person.party==='R'?'Republican':'Libertarian'} {person.title}, {person.state}  <br />
               </ListItemText>
             </ListItem>
           ))}
