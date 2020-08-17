@@ -22,6 +22,8 @@ const statementSearch = (state = [{test: 'object'}], action) => {
   switch (action.type) {
     case 'SET_STATEMENT_SEARCH':
       return action.payload;
+    case 'CLEAR_WELCOME_SEARCH':
+      return [{test: 'object'}];
     default:
       return state;
   }

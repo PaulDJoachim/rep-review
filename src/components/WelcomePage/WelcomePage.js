@@ -215,12 +215,11 @@ class WelcomePage extends Component {
           <Typography variant="body1"></Typography>
         }
         </Paper>
-        {this.props.user.id?
+        {this.props.user.id && this.props.statements.results !== undefined ?
           <Paper className={classes.paperHolder}>
             <Typography variant='h4'>Congressional Statements Involving {this.props.statements.query}</Typography>
             <List>
-              {this.props.statements.results !== undefined ?
-              this.props.statements.results.map((statement, index) => (
+              {this.props.statements.results.map((statement, index) => (
                 <ListItem button key={index}>
                     <div onClick={()=>this.handleMemberClick(statement.member_id)} style={placeholder}>
                       <img style={listStyle} src={`https://theunitedstates.io/images/congress/225x275/${statement.member_id}.jpg`} />
@@ -233,8 +232,8 @@ class WelcomePage extends Component {
                     </ListItemText>
                 </a>
                   </ListItem>
-              ))
-              : <div/>}
+              ))}
+              : <div/>
             </List>
           </Paper>
         :

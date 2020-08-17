@@ -51,6 +51,7 @@ function* logoutUser(action) {
 
     // empty the bookmarks reducer
     yield put({ type: 'CLEAR_BOOKMARKS' });
+    yield put({ type: 'CLEAR_WELCOME_SEARCH' });
 
 
     // now that the session has ended on the server
