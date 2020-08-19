@@ -63,4 +63,4 @@ I'd like to thank [ProPublica.org](https://www.propublica.org/) for their amazin
 
 Also I'm very grateful to Wikipedia and the Wikimedia foundation for their biographical information about congress members, and everything they do to make information accessible to people around the world.
 
-Finally, thanks go to my instructors and peers at [Prime Digital Academy](www.primeacademy.io) who equipped me and helped to make this application a reality.
+Finally, thanks go to my instructors and peers at [Prime Digital Academy](https://www.primeacademy.io) who equipped me and helped to make this application a reality.
