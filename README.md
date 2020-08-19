@@ -10,7 +10,7 @@ Rep-Review is an informational app designed to provide users with information ab
 
 ## Setup
 
-1. Obtain a free API key for the ![Propublica Congress API](https://www.propublica.org/datastore/api/propublica-congress-api)
+1. Obtain a free API key for the [Propublica Congress API](https://www.propublica.org/datastore/api/propublica-congress-api)
 2. Create a .env file within the project and add PROPUBLICA_API_KEY=YOUR_API_KEY
 3. Create a database called 'rep_review' and run the query from the database.sql file to build the necessary tables. 
 2. Use the "$ npm install" command to install dependencies.
@@ -41,7 +41,7 @@ Rep-Review is an informational app designed to provide users with information ab
 
 ## Scope Documentation
 
-The scope documentation shows what I had in mind when designing Rep-Review. Here you can see how the different features of the project were outlined and described before implementation: ![Scope Document](https://docs.google.com/document/d/e/2PACX-1vRHPk9CBIjgbx_mPQGPxvghJ-Ndj0X2SyAi8eIlchOCfSFeDtbu-8IUAsgxCkHgZh-nITrEJ5AcBv4z/pub)
+The scope documentation shows what I had in mind when designing Rep-Review. Here you can see how the different features of the project were outlined and described before implementation: [Scope Document](https://docs.google.com/document/d/e/2PACX-1vRHPk9CBIjgbx_mPQGPxvghJ-Ndj0X2SyAi8eIlchOCfSFeDtbu-8IUAsgxCkHgZh-nITrEJ5AcBv4z/pub)
 
 
 ## APIs Used
