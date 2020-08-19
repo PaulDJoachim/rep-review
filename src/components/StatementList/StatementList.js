@@ -89,7 +89,7 @@ class StatementList extends Component {
           </Paper>
           {this.state.hasSearched && this.props.search.results ?
           <>
-            <Typography variant='h4'>Statements Mentioning "{this.props.search.query}"</Typography>
+            <Typography variant='h4'>Statements Mentioning: {this.props.search.query}</Typography>
             <List>
               {this.props.search.results.map((statement, index) => (
                 <ListItem button key={index}>
