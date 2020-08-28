@@ -28,9 +28,11 @@ class votesList extends Component {
   //   this.props.dispatch({type:'GET_RECENT_VOTES'});
   // }
 
-  handleVoteClick = (chamber, session, rollCall) => {
-    this.props.history.push('/Votes/' + chamber + '/' + session + rollCall)
-  }
+
+  // Disabled until vote pages are be added
+  // handleVoteClick = (chamber, session, rollCall) => {
+  //   this.props.history.push('/Votes/' + chamber + '/' + session + rollCall)
+  // }
 
   render() {
     
