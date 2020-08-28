@@ -29,7 +29,7 @@ class votesList extends Component {
   // }
 
 
-  // Disabled until vote pages are be added
+  // Disabled until vote pages are added
   // handleVoteClick = (chamber, session, rollCall) => {
   //   this.props.history.push('/Votes/' + chamber + '/' + session + rollCall)
   // }
